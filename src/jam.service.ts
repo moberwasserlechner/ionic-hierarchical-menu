@@ -5,9 +5,7 @@ import {Injectable} from "@angular/core";
  */
 @Injectable()
 export class JamConfig {
-    // demo mode to just see sth
-    demo: boolean = false;
-    dataMode: JamMode = JamMode.HIERARCHICAL;
+    itemMode: JamMode = JamMode.HIERARCHICAL;
 }
 
 /**
@@ -26,14 +24,13 @@ export class JamItem {
     id: string | number;
     title: string;
     order: number = 0;
+
     icon: string | null;
-    iconMode: IconMode = IconMode.IONIC;
-    iconOnly: boolean = false; // if true the title is shown as tooltip
+    iconMode: IconMode = IconMode.FONTAWESOME;
     style: string | null;
-    badgeValue: string | number | null;
-    badgeClass: string | null;
-    opened: boolean;
-    parentRef: JamItem | string | number | null; // references with string must use the id
+
+    expanded: boolean = false;
+    parentRef: JamItem | string | number | null; // references with string must use the idx
     children: Array<JamItem> = [];
 }
 
