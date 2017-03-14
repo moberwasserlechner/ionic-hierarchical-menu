@@ -4,7 +4,7 @@ import {Component, Input, OnInit} from "@angular/core";
     selector: "ngx-jam",
     templateUrl: "jam.template.html"
 })
-export class JustAnotherMenuComponent implements OnInit {
+export class JamComponent implements OnInit {
 
     ngOnInit(): void {
 

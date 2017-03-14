@@ -1,11 +1,22 @@
-import {Injectable} from "@angular/core";
+import {Injectable, PipeTransform, Pipe} from "@angular/core";
 
+
+
+@Pipe({ name: 'i18nSupport'})
+export class DefaultI18nSupport implements PipeTransform  {
+    constructor() {}
+
+    transform(value: any, ...args: any[]): any {
+        return value;
+    }
+}
 /**
  * Component config
  */
 @Injectable()
 export class JamConfig {
     itemMode: JamMode = JamMode.HIERARCHICAL;
+    i18nSupport: PipeTransform = new DefaultI18nSupport();
 }
 
 /**
