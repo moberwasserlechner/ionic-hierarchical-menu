@@ -26,7 +26,7 @@ module.exports = {
         publicPath: '/',
         filename: 'index.umd.js',
         libraryTarget: 'umd',
-        library: 'ngx-simply-nav'
+        library: 'ngx-jam'
     },
 
     // require those dependencies but don't bundle them

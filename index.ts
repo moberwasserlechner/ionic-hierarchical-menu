@@ -1,26 +1,26 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import {SimplyNavConfig, SimplyNavService, simplyNavServiceFactory} from "./src/simply-nav.service";
-import {SimplyNavComponent} from "./src/simply-nav.component";
+import {JamConfig, justAnotherMenuServiceFactory, JustAnotherMenuService} from "./src/jam.service";
+import {JustAnotherMenuComponent} from "./src/jam.component";
 
-export * from './src/simply-nav.service';
-export * from './src/simply-nav.component';
+export * from './src/jam.service';
+export * from './src/jam.component';
 
 export let providers = [
-    SimplyNavConfig,
-    { provide: SimplyNavService, useFactory: simplyNavServiceFactory, deps: [SimplyNavConfig] }
+    JamConfig,
+    { provide: JustAnotherMenuService, useFactory: justAnotherMenuServiceFactory, deps: [JamConfig] }
 ];
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [SimplyNavComponent],
-    exports: [SimplyNavComponent],
+    declarations: [JustAnotherMenuComponent],
+    exports: [JustAnotherMenuComponent],
     providers: providers
 })
-export class SimplyNavModule {
+export class JustAnotherMenuModule {
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: SimplyNavModule,
+            ngModule: JustAnotherMenuModule,
             providers: providers
         };
     }

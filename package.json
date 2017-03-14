@@ -1,18 +1,17 @@
 {
-  "name": "ngx-simply-nav",
-  "description": "Angular2 multilevel vertical menu component",
+  "name": "ngx-jam",
+  "description": "Just Another Menu (ngx-jam) is a Angular 2+ Hierarchical / Multi-level navigation component",
   "version": "0.1.0",
   "scripts": {
     "test": "karma start",
     "test-watch": "tsc && karma start --no-single-run --auto-watch",
     "commit": "npm run prepublish && npm test && git-cz",
-    "prepublish": "ngc && npm run build",
     "build": "webpack && cp *.css bundles && cp -rf img bundles/img",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/moberwasserlechner/ngx-simply-nav.git"
+    "url": "https://github.com/moberwasserlechner/ngx-jam.git"
   },
   "keywords": [
     "angular",
@@ -25,12 +24,12 @@
   "author": "Michael Oberwasserlechner",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/moberwasserlechner/ngx-simply-nav/issues"
+    "url": "https://github.com/moberwasserlechner/ngx-jam/issues"
   },
   "main": "bundles/index.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
-  "homepage": "https://github.com/moberwasserlechner/ngx-simply-nav",
+  "homepage": "https://github.com/moberwasserlechner/ngx-jam",
   "peerDependencies": {
     "@angular/core": "^2.4.8"
   },

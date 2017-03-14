@@ -4,16 +4,16 @@ import {Injectable} from "@angular/core";
  * Component config
  */
 @Injectable()
-export class SimplyNavConfig {
+export class JamConfig {
     // demo mode to just see sth
     demo: boolean = false;
-    dataMode: SimplyNavMode = SimplyNavMode.HIERARCHICAL;
+    dataMode: JamMode = JamMode.HIERARCHICAL;
 }
 
 /**
  * Component option data structure form. In which form are the menu items represented
  */
-export enum SimplyNavMode {
+export enum JamMode {
     FLAT, HIERARCHICAL
 }
 
@@ -22,7 +22,7 @@ export enum SimplyNavMode {
 // ######################################
 
 @Injectable()
-export class SimplyNavItem {
+export class JamItem {
     id: string | number;
     title: string;
     order: number = 0;
@@ -33,22 +33,22 @@ export class SimplyNavItem {
     badgeValue: string | number | null;
     badgeClass: string | null;
     opened: boolean;
-    parentRef: SimplyNavItem | string | number | null; // references with string must use the id
-    children: Array<SimplyNavItem> = [];
+    parentRef: JamItem | string | number | null; // references with string must use the id
+    children: Array<JamItem> = [];
 }
 
 export enum IconMode {
     FONTAWESOME, IONIC
 }
 
-export function simplyNavServiceFactory(config: SimplyNavConfig): SimplyNavService  {
-    return new SimplyNavService(config);
+export function justAnotherMenuServiceFactory(config: JamConfig): JustAnotherMenuService  {
+    return new JustAnotherMenuService(config);
 }
 
 @Injectable()
-export class SimplyNavService {
+export class JustAnotherMenuService {
 
-    constructor(private config: SimplyNavConfig) {}
+    constructor(private config: JamConfig) {}
 
 }
 
