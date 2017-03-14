@@ -1,0 +1,82 @@
+{
+  "name": "ngx-simply-nav",
+  "description": "Angular2 multilevel vertical menu component",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "karma start",
+    "test-watch": "tsc && karma start --no-single-run --auto-watch",
+    "commit": "npm run prepublish && npm test && git-cz",
+    "prepublish": "ngc && npm run build",
+    "build": "webpack && cp *.css bundles && cp -rf img bundles/img",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moberwasserlechner/ngx-simply-nav.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "menu",
+    "vertical nav",
+    "navigation",
+    "multi-level"
+  ],
+  "author": "Michael Oberwasserlechner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moberwasserlechner/ngx-simply-nav/issues"
+  },
+  "main": "bundles/index.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "homepage": "https://github.com/moberwasserlechner/ngx-simply-nav",
+  "peerDependencies": {
+    "@angular/core": "^2.4.8"
+  },
+  "devDependencies": {
+    "@angular/common": "^2.4.8",
+    "@angular/compiler": "^2.4.8",
+    "@angular/compiler-cli": "^2.4.8",
+    "@angular/core": "^2.4.8",
+    "@angular/platform-browser": "^2.4.8",
+    "@angular/platform-browser-dynamic": "^2.4.8",
+    "@angular/platform-server": "^2.4.8",
+    "@types/hammerjs": "2.0.33",
+    "@types/jasmine": "2.5.37",
+    "@types/node": "6.0.46",
+    "awesome-typescript-loader": "2.2.4",
+    "cash-cp": "^0.2.0",
+    "codelyzer": "2.0.0-beta.2",
+    "commitizen": "2.8.6",
+    "core-js": "2.4.1",
+    "cz-conventional-changelog": "1.2.0",
+    "istanbul-instrumenter-loader": "0.2.0",
+    "jasmine-core": "2.5.2",
+    "karma": "1.3.0",
+    "karma-chrome-launcher": "2.0.0",
+    "karma-coverage": "1.1.1",
+    "karma-firefox-launcher": "1.0.0",
+    "karma-jasmine": "1.0.2",
+    "karma-mocha-reporter": "^2.1.0",
+    "karma-remap-coverage": "~0.1.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.1",
+    "loader-utils": "~0.2.16",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^5.0.1",
+    "semantic-release": "4.3.5",
+    "source-map-loader": "0.1.5",
+    "ts-helpers": "1.1.2",
+    "tslint": "~4.0.0",
+    "tslint-loader": "3.3.0",
+    "typescript": "2.0.9",
+    "webpack": "2.2.0",
+    "zone.js": "^0.7.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
