@@ -1,10 +1,10 @@
-# Just Another Menu [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Travis](https://img.shields.io/travis/moberwasserlechner/ngx-jam/master.svg?maxAge=2592000)](https://travis-ci.org/moberwasserlechner/ngx-jam) [![npm monthly downloads](https://img.shields.io/npm/dm/ngx-jam.svg)](https://www.npmjs.com/package/ngx-jam) [![npm version](https://img.shields.io/npm/v/ngx-jam.svg)](https://www.npmjs.com/package/ngx-jam)
+# Hierarchical Menu for Angular [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Travis](https://img.shields.io/travis/moberwasserlechner/ng-hierarchical-menu/master.svg?maxAge=2592000)](https://travis-ci.org/moberwasserlechner/ng-hierarchical-menu) [![npm monthly downloads](https://img.shields.io/npm/dm/ng-hierarchical-menu.svg)](https://www.npmjs.com/package/ng-hierarchical-menu) [![npm version](https://img.shields.io/npm/v/ng-hierarchical-menu.svg)](https://www.npmjs.com/package/ng-hierarchical-menu)
 
-Just Another Menu (ngx-jam) is a Angular 2+ Hierarchical / Multi-level navigation component
+Hierarchical Menu (ng-hierarchical-menu) is a Angular 2+ Hierarchical / Multi-level navigation component
 
 ## Installation
 ```sh
-npm install ngx-jam --save
+npm install ng-hierarchical-menu --save
 ```
 
 ## Demo
@@ -17,22 +17,22 @@ If you use SystemJS to load your files, you might have to update your config:
 ```js
 System.config({
     map: {
-        'ngx-jam': 'node_modules/ngx-jam/bundles/index.umd.js'
+        'ng-hierarchical-menu': 'node_modules/ng-hierarchical-menu/bundles/index.umd.js'
     }
 });
 ```
 
-#### Import the `SimplyNavModule`
+#### Import the `HierarchicalMenuModule`
 
 ```ts
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from '@angular/core';
-import {SimplyNavModule} from 'ngx-jam';
+import {HierarchicalMenuModule} from 'ng-hierarchical-menu';
 
 @NgModule({
     imports: [
         BrowserModule,
-        SimplyNavModule.forRoot()
+        HierarchicalMenuModule.forRoot()
     ],
     bootstrap: [AppComponent]
 })
@@ -40,11 +40,11 @@ export class AppModule {
 }
 ```
 
-#### Use the `SimplyNavService`
+#### Use the `HierarchicalMenuService`
 
 
 
-#### Use the `SimplyNavComponent`
+#### Use the `HierarchicalMenuComponent`
 
 # License
 [MIT](/LICENSE)

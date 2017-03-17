@@ -1,0 +1,12 @@
+<ol class="tree">
+    <li *ngFor="let item of menuItems" [ngClass]="">
+        <!-- TBD Icon -->
+        {{ item.title }}
+        <!-- TBD Translated -->
+        {{ item.title | translate }}
+        <!-- TBD -->
+        <!--<a *ngIf="contentNode.HasChildren" (click)="contentNode.toggle=!contentNode.toggle" class="toggle">{{ !!contentNode.toggle ? '-' : '+' }}</a>-->
+        <!--{{ contentNode.Name }}-->
+        <hierarchical-menu-item *ngIf="item.hasChildren" ></hierarchical-menu-item>
+    </li>
+</ol>

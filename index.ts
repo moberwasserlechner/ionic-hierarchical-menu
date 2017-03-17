@@ -1,26 +1,26 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import {JamConfig, justAnotherMenuServiceFactory, JustAnotherMenuService} from "./src/jam.service";
-import {JustAnotherMenuComponent} from "./src/jam.component";
+import { HierarchicalMenuConfig, hierarchicalMenuServiceFactory, HierarchicalMenuService } from "./src/hierarchical-menu.service";
+import { HierarchicalMenuComponent } from "./src/hierarchical-menu.component";
 
-export * from './src/jam.service';
-export * from './src/jam.component';
+export * from './src/hierarchical-menu.service';
+export * from './src/hierarchical-menu.component';
 
 export let providers = [
-    JamConfig,
-    { provide: JustAnotherMenuService, useFactory: justAnotherMenuServiceFactory, deps: [JamConfig] }
+    HierarchicalMenuConfig,
+    { provide: HierarchicalMenuService, useFactory: hierarchicalMenuServiceFactory, deps: [HierarchicalMenuConfig] }
 ];
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [JustAnotherMenuComponent],
-    exports: [JustAnotherMenuComponent],
+    declarations: [HierarchicalMenuComponent],
+    exports: [HierarchicalMenuComponent],
     providers: providers
 })
-export class JustAnotherMenuModule {
+export class HierarchicalMenuModule {
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: JustAnotherMenuModule,
+            ngModule: HierarchicalMenuModule,
             providers: providers
         };
     }

@@ -14,15 +14,15 @@ export class DefaultI18nSupport implements PipeTransform  {
  * Component config
  */
 @Injectable()
-export class JamConfig {
-    itemMode: JamMode = JamMode.HIERARCHICAL;
+export class HierarchicalMenuConfig {
+    itemMode: HierarchicalMenuMode = HierarchicalMenuMode.HIERARCHICAL;
     i18nSupport: PipeTransform = new DefaultI18nSupport();
 }
 
 /**
  * Component option data structure form. In which form are the menu items represented
  */
-export enum JamMode {
+export enum HierarchicalMenuMode {
     FLAT, HIERARCHICAL
 }
 
@@ -31,7 +31,7 @@ export enum JamMode {
 // ######################################
 
 @Injectable()
-export class JamItem {
+export class HierarchicalMenuItem {
     id: string | number;
     title: string;
     order: number = 0;
@@ -41,22 +41,26 @@ export class JamItem {
     style: string | null;
 
     expanded: boolean = false;
-    parentRef: JamItem | string | number | null; // references with string must use the idx
-    children: Array<JamItem> = [];
+    parentRef: HierarchicalMenuItem | string | number | null; // references with string must use the idx
+    children: Array<HierarchicalMenuItem> = [];
+
+    hasChildren(): boolean {
+        return this.children != null && this.children.length > 0;
+    }
 }
 
 export enum IconMode {
     FONTAWESOME, IONIC
 }
 
-export function justAnotherMenuServiceFactory(config: JamConfig): JustAnotherMenuService  {
-    return new JustAnotherMenuService(config);
+export function hierarchicalMenuServiceFactory(config: HierarchicalMenuConfig): HierarchicalMenuService  {
+    return new HierarchicalMenuService(config);
 }
 
 @Injectable()
-export class JustAnotherMenuService {
+export class HierarchicalMenuService {
 
-    constructor(private config: JamConfig) {}
+    constructor(private config: HierarchicalMenuConfig) {}
 
 }
 

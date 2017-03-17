@@ -1,7 +1,3 @@
-/**
- * Adapted from angular2-webpack-starter
- */
-
 const helpers = require('./config/helpers');
 const webpack = require('webpack');
 
@@ -26,7 +22,7 @@ module.exports = {
         publicPath: '/',
         filename: 'index.umd.js',
         libraryTarget: 'umd',
-        library: 'ngx-jam'
+        library: 'ng-hierarchical-menu'
     },
 
     // require those dependencies but don't bundle them
