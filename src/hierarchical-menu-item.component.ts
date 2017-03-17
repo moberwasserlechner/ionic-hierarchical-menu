@@ -7,7 +7,11 @@ import {HierarchicalMenuItem} from "./hierarchical-menu.service";
 })
 export class HierarchicalMenuItemComponent implements OnInit {
 
-    menuItems: HierarchicalMenuItem;
+    @Input() menuItems: Array<HierarchicalMenuItem>;
+
+    toggle(item: HierarchicalMenuItem) {
+        item.expanded = !item.expanded;
+    }
 
     ngOnInit(): void {
 

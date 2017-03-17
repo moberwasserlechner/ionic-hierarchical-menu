@@ -40,12 +40,22 @@ export class HierarchicalMenuItem {
     iconMode: IconMode = IconMode.FONTAWESOME;
     style: string | null;
 
+    page: any;
+
     expanded: boolean = false;
     parentRef: HierarchicalMenuItem | string | number | null; // references with string must use the idx
     children: Array<HierarchicalMenuItem> = [];
 
     hasChildren(): boolean {
         return this.children != null && this.children.length > 0;
+    }
+
+    useIconsByFontAwesome(): boolean {
+        return this.iconMode === IconMode.FONTAWESOME;
+    }
+
+    useIconsByIonic() {
+        return this.iconMode === IconMode.IONIC;
     }
 }
 
