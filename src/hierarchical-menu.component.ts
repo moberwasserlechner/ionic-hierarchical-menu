@@ -2,7 +2,11 @@ import {Component, OnInit} from "@angular/core";
 
 @Component({
     selector: "hierarchical-menu",
-    templateUrl: "hierarchical-menu.template.html"
+    template: `
+        <div [ngClass]="">
+            <hierarchical-menu></hierarchical-menu>
+        </div>
+    `
 })
 export class HierarchicalMenuComponent implements OnInit {
 

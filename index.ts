@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from "@angular/core";
+import {NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { HierarchicalMenuConfig, hierarchicalMenuServiceFactory, HierarchicalMenuService } from "./src/hierarchical-menu.service";
 import { HierarchicalMenuComponent } from "./src/hierarchical-menu.component";
@@ -18,7 +18,8 @@ export let providers = [
     imports: [CommonModule],
     declarations: [HierarchicalMenuComponent, HierarchicalMenuItemComponent],
     exports: [HierarchicalMenuComponent, HierarchicalMenuItemComponent],
-    providers: providers
+    providers: providers,
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class HierarchicalMenuModule {
     static forRoot(): ModuleWithProviders {

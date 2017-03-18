@@ -1,5 +1,5 @@
 /**
- * taken from angular2-webpack-starter
+ * taken from ng2-dnd
  */
 var path = require('path');
 

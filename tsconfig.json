@@ -17,7 +17,6 @@
     "moduleResolution": "node",
     "target": "es5",
     "types": [
-      "hammerjs",
       "jasmine",
       "node"
     ],

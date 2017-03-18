@@ -34,29 +34,17 @@ export enum HierarchicalMenuMode {
 export class HierarchicalMenuItem {
     id: string | number;
     title: string;
-    order: number = 0;
+    order?: number = 0;
 
-    icon: string | null;
-    iconMode: IconMode = IconMode.FONTAWESOME;
-    style: string | null;
+    icon?: string | null;
+    iconMode?: IconMode = IconMode.FONTAWESOME;
+    style?: string | null;
 
-    page: any;
+    page?: any;
 
-    expanded: boolean = false;
-    parentRef: HierarchicalMenuItem | string | number | null; // references with string must use the idx
-    children: Array<HierarchicalMenuItem> = [];
-
-    hasChildren(): boolean {
-        return this.children != null && this.children.length > 0;
-    }
-
-    useIconsByFontAwesome(): boolean {
-        return this.iconMode === IconMode.FONTAWESOME;
-    }
-
-    useIconsByIonic() {
-        return this.iconMode === IconMode.IONIC;
-    }
+    expanded?: boolean = false;
+    parentRef?: HierarchicalMenuItem | string | number | null; // references with string must use the idx
+    children?: Array<HierarchicalMenuItem> = [];
 }
 
 export enum IconMode {
