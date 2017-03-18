@@ -8,12 +8,12 @@ build.xml
 node_modules/*
 npm-debug.log
 *.ts
-!*.d.ts
 tests
 .github
 coverage
 !*.metadata.json
-!bundles/*.js
+!*.d.ts
+!dist/**
 
 #################
 ## JetBrains
