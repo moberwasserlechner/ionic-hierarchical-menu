@@ -1,6 +1,6 @@
-# Hierarchical Menu for Angular [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Travis](https://img.shields.io/travis/moberwasserlechner/ng-hierarchical-menu/master.svg?maxAge=2592000)](https://travis-ci.org/moberwasserlechner/ng-hierarchical-menu) [![npm monthly downloads](https://img.shields.io/npm/dm/ng-hierarchical-menu.svg)](https://www.npmjs.com/package/ng-hierarchical-menu) [![npm version](https://img.shields.io/npm/v/ng-hierarchical-menu.svg)](https://www.npmjs.com/package/ng-hierarchical-menu)
+# Hierarchical Menu for Angular [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Travis](https://img.shields.io/travis/moberwasserlechner/ng-hierarchical-menu/master.svg)](https://travis-ci.org/moberwasserlechner/ng-hierarchical-menu) [![npm monthly downloads](https://img.shields.io/npm/dm/ng-hierarchical-menu.svg)](https://www.npmjs.com/package/ng-hierarchical-menu) [![npm version](https://img.shields.io/npm/v/ng-hierarchical-menu.svg)](https://www.npmjs.com/package/ng-hierarchical-menu)
 
-Hierarchical Menu (ng-hierarchical-menu) is a Angular 2+ Hierarchical / Multi-level navigation component
+Hierarchical Menu (ng-hierarchical-menu) for Angular 2+ is a hierarchical / multi-level menu component
 
 ## Installation
 ```sh
