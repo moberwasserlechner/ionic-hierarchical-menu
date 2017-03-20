@@ -21,7 +21,7 @@ module.exports = {
 
     resolve: {
         extensions: ['.ts', '.js'],
-        modules: [helpers.root('src'), helpers.root('dist/src'), 'node_modules']
+        modules: [helpers.root('src'), helpers.root('dist'), 'node_modules']
     },
 
     module: {
@@ -54,9 +54,9 @@ module.exports = {
             enforce: 'post',
             test: /\.(js|ts)$/,
             loader: 'istanbul-instrumenter-loader',
-            include: helpers.root('src'),
+            include: [helpers.root('src'), helpers.root('dist')],
             exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/]
-        }],
+        }]
     },
 
     plugins: [
@@ -80,8 +80,7 @@ module.exports = {
                     emitErrors: false,
                     failOnHint: false,
                     resourcePath: 'src'
-                },
-
+                }
             }
         })
     ]

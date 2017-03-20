@@ -12,7 +12,7 @@ module.exports = {
     devtool: 'inline-source-map',
 
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js', '.scss']
     },
 
     entry: helpers.root('index.ts'),
@@ -34,7 +34,11 @@ module.exports = {
             test: /\.ts$/,
             loader: 'tslint-loader',
             exclude: [helpers.root('node_modules')]
-        }, {
+        },{
+            test: /\.scss$/,
+            exclude: /node_modules/,
+            loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
+        },{
             test: /\.ts$/,
             loader: 'awesome-typescript-loader?declaration=false',
             exclude: [/\.e2e\.ts$/]

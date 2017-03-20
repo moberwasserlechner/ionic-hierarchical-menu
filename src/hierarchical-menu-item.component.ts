@@ -5,7 +5,7 @@ import {HierarchicalMenuItem, IconMode} from "./hierarchical-menu.service";
     selector: "hierarchical-menu-item",
     template: `
         <ul class="hierarchical-menu-level">
-            <li *ngFor="let item of menuItems" id="item.id" [ngClass]="">
+            <li class="hierarchical-menu-item" *ngFor="let item of menuItems">
                 <button>
                     <i *ngIf="useIconsByFontAwesome(item)" class="fa {{ item.icon }}" aria-hidden="true"></i>
                     <!--#7 <ion-icon *ngIf="useIconsByIonic(item)" name="{{ item.icon }}"></ion-icon>-->
@@ -21,12 +21,12 @@ export class HierarchicalMenuItemComponent implements OnInit {
 
     @Input() menuItems: Array<HierarchicalMenuItem>;
 
-    toggle(item: HierarchicalMenuItem) {
-        item.expanded = !item.expanded;
-    }
-
     ngOnInit(): void {
 
+    }
+
+    toggle(item: HierarchicalMenuItem) {
+        item.expanded = !item.expanded;
     }
 
 
@@ -35,11 +35,11 @@ export class HierarchicalMenuItemComponent implements OnInit {
     }
 
     useIconsByFontAwesome(menuItem: HierarchicalMenuItem): boolean {
-        return menuItem.iconMode === IconMode.FONTAWESOME;
+        return menuItem.icon != null && menuItem.iconMode === IconMode.FONTAWESOME;
     }
 
     useIconsByIonic(menuItem: HierarchicalMenuItem) {
-        return menuItem.iconMode === IconMode.IONIC;
+        return menuItem.icon != null && menuItem.iconMode === IconMode.IONIC;
     }
 
 }

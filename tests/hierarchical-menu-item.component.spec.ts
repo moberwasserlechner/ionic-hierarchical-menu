@@ -8,11 +8,9 @@ describe("HierarchicalMenuItemComponent", () => {
 
     const menuItems: Array<HierarchicalMenuItem> = [
         {
-            id: "1",
             title: "A",
         },
         {
-            id: "1",
             title: "B",
         }
     ];

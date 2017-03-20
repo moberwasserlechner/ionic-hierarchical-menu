@@ -31,9 +31,44 @@ export enum HierarchicalMenuMode {
 // ######################################
 
 @Injectable()
+export class HierarchicalMenuItemContainer {
+    private idCounter: number = 0;
+    private _menuItems: Array<HierarchicalMenuItem> = [];
+
+    constructor(menuItems?: Array<HierarchicalMenuItem>) {
+        this.idCounter = 0;
+        if (menuItems) {
+            menuItems.forEach(i => {
+                this.add(i);
+            });
+        }
+    }
+
+    public add(item: HierarchicalMenuItem) {
+        if (item != null) {
+            if (item.id == null) {
+                this.idCounter++;
+                item.id = this.idCounter.toString();
+            }
+        }
+        this._menuItems.push(item);
+    }
+
+    set menuItems(list: Array<HierarchicalMenuItem>) {
+        this._menuItems = list;
+    }
+
+    get menuItems() {
+        return this._menuItems || [];
+    }
+
+}
+
+@Injectable()
 export class HierarchicalMenuItem {
-    id: string | number;
     title: string;
+
+    id?: string;
     order?: number = 0;
 
     icon?: string | null;
@@ -43,7 +78,7 @@ export class HierarchicalMenuItem {
     page?: any;
 
     expanded?: boolean = false;
-    parentRef?: HierarchicalMenuItem | string | number | null; // references with string must use the idx
+    parentRef?: string | null; // references with string must use the idx
     children?: Array<HierarchicalMenuItem> = [];
 }
 
