@@ -64,14 +64,14 @@ describe("HierarchicalMenuComponent", () => {
         componentFixture.componentInstance.mode = "flat";
 
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.add({id: "menu.personal.section", title: "menu.personal.section"});
-        config.add({id: "menu.personal.home", title: "menu.personal.home", parentRef: "menu.personal.section"});
-        config.add({id: "menu.personal.profile", title: "menu.personal.profile", parentRef: "menu.personal.section"});
-        config.add({id: "menu.personal.events", title: "menu.personal.events", parentRef: "menu.personal.section"});
-        config.add({id: "menu.personal.clubs", title: "menu.personal.clubs", parentRef: "menu.personal.section"});
-        config.add({id: "menu.settings.section", title: "menu.settings.section"});
-        config.add({id: "menu.settings.feedback", title: "menu.settings.feedback", parentRef: "menu.settings.section"});
-        config.add({id: "menu.settings.about", title: "menu.settings.about", parentRef: "menu.settings.section"});
+        config.add({title: "menu.personal.section"});
+        config.add({title: "menu.personal.home", parentRef: "menu.personal.section"});
+        config.add({title: "menu.personal.profile", parentRef: "menu.personal.section"});
+        config.add({title: "menu.personal.events", parentRef: "menu.personal.section"});
+        config.add({title: "menu.personal.clubs", parentRef: "menu.personal.section"});
+        config.add({title: "menu.settings.section"});
+        config.add({title: "menu.settings.feedback", parentRef: "menu.settings.section"});
+        config.add({title: "menu.settings.about", parentRef: "menu.settings.section"});
 
         componentFixture.componentInstance.config = config;
         expect(componentFixture.componentInstance.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.FLAT);
@@ -81,6 +81,68 @@ describe("HierarchicalMenuComponent", () => {
         expect(menuItems.length).toBe(2);
         let parentItem = menuItems[0];
         expect(parentItem.children && parentItem.children.length).toBe(4);
+    });
+
+    it("should add one item to a existing list", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.add({title: "a"});
+        config.add({title: "b"});
+        // c is missing and will be added later
+        config.add({title: "d"});
+        config.add({title: "e"});
+
+        expect(config.menuItems.length).toBe(4);
+
+        config.addBefore("d", {title: "c"});
+        expect(config.menuItems.length).toBe(5);
+        expect(config.menuItems[2].title).toBe("c");
+    });
+
+    it("should add multiple items to a existing list", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.add({title: "a"});
+        config.add({title: "b"});
+        config.add({title: "c"});
+        // gap to add other items
+        config.add({title: "m"});
+
+        expect(config.menuItems.length).toBe(4);
+
+        config.addBefore("d", {title: "d"}, {title:"e"}, {title:"f"});
+        expect(config.menuItems.length).toBe(7);
+        expect(config.menuItems[4].title).toBe("e");
+
+    });
+
+    it("should add item array to a existing list", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.add({title: "a"});
+        config.add({title: "b"});
+        config.add({title: "c"});
+        // gap to add other items
+        config.add({title: "m"});
+
+        expect(config.menuItems.length).toBe(4);
+
+        config.addBeforeAsArray("d", [{title: "d"}, {title:"e"}, {title:"f"}]);
+        expect(config.menuItems.length).toBe(7);
+        expect(config.menuItems[4].title).toBe("e");
+
+    });
+
+    it("should add item before not existing id", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.add({title: "a"});
+        config.add({title: "b"});
+        config.add({title: "c"});
+        // gap to add other items
+        config.add({title: "m"});
+
+        expect(config.menuItems.length).toBe(4);
+
+        config.addBefore("aa", {title: "z"}); // will be added to the end of the list
+        expect(config.menuItems.length).toBe(5);
+        expect(config.menuItems[(config.menuItems.length -1)].title).toBe("z");
     });
 
 
