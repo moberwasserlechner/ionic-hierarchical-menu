@@ -1,30 +1,76 @@
-.hierarchical-menu {
+$hierarchical-menu-color: $color4;
+$hierarchical-menu-active-bg-color: $color4;
+$hierarchical-menu-item-border-color: $color4;
+$hierarchical-menu-hover-bg-color: $color2;
+$hierarchical-menu-hover-fg-color: $color4;
 
-  height: 100%; /* Full height */
+.hierarchical-menu {
+  width: 100%;
+  //height: 100%; /* Full height */
   //position: fixed; /* Make it stick, even on scroll */
   //overflow: auto; /* Enable scrolling if the sidenav has too much content */
 
-  .hierarchical-menu-level {
+  // ul
+  .hm-level {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-  }
-
-  .hierarchical-menu-item {
-
-    a {
-      display: block;
-      color: #000;
-      padding: 8px 16px;
-      text-decoration: none;
-
-      :hover {
-        background-color: #555;
-        color: white;
-      }
+    li {
+      text-align: left !important;
     }
   }
 
+  // ul li
+  .hm-item {
+
+
+    // class on the div in li
+    .hm-item-line {
+      border-bottom: 1px solid $hierarchical-menu-item-border-color;
+      padding: 8px 10px;
+      width: 100%;
+      a {
+        text-decoration: none;
+        :hover {
+          color: $hierarchical-menu-color;
+        }
+      }
+
+      button {
+        background:none; // !important;
+        border:none;
+        padding: 0; // !important;
+        font: inherit;
+        text-align: left;
+        /*border is optional*/
+        //border-bottom:1px solid #444;
+        //cursor: pointer;
+      }
+
+
+      .hm-link {
+        color: $hierarchical-menu-color;
+
+      }
+      .hm-opener {
+        color: $hierarchical-menu-color;
+        float: right;
+        text-align: right !important;
+        font-size: larger;
+        vertical-align: middle;
+      }
+
+      //:last-child {
+      //  border-bottom: 0 !important;
+      //}
+
+      .active {
+        background-color: $hierarchical-menu-active-bg-color;
+      }
+    }
+    .hm-item-line:hover {
+      background-color: $hierarchical-menu-hover-bg-color;
+      color: $hierarchical-menu-hover-fg-color;
+    }
+  }
 }

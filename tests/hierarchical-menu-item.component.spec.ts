@@ -1,19 +1,10 @@
-import {TestBed, ComponentFixture} from '@angular/core/testing';
-
+import {TestBed, ComponentFixture} from "@angular/core/testing";
 import {HierarchicalMenuItemComponent} from "../src/hierarchical-menu-item.component";
-import {DefaultI18nSupport, HierarchicalMenuItem} from "../src/hierarchical-menu.service";
+import {DefaultI18nSupport} from "../src/hierarchical-menu.service";
 
 describe("HierarchicalMenuItemComponent", () => {
     let componentFixture: ComponentFixture<HierarchicalMenuItemComponent>;
 
-    const menuItems: Array<HierarchicalMenuItem> = [
-        {
-            title: "A",
-        },
-        {
-            title: "B",
-        }
-    ];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -24,14 +15,20 @@ describe("HierarchicalMenuItemComponent", () => {
 
     beforeEach(() => {
         componentFixture = TestBed.createComponent(HierarchicalMenuItemComponent);
-        componentFixture.componentInstance.menuItems = menuItems;
-        componentFixture.detectChanges();
     });
 
     it('should be defined', () => {
         const element = componentFixture.elementRef.nativeElement;
-        expect(element.querySelector('.hierarchical-menu-level')).toBeDefined();
+        expect(element.querySelector('.hm-level')).toBeDefined();
     });
+
+    it('should be a custom item line style set', () => {
+        // componentFixture.componentInstance.menuItems = menuItems;
+        // componentFixture.detectChanges();
+        let styles = componentFixture.componentInstance.buildStyles({ title: "styleTest", style: "test-style"});
+        expect(styles).toBe("hm-item-line test-style");
+    });
+
 
 });
 
