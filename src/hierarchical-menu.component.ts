@@ -1,11 +1,11 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {HierarchicalMenuItem, HierarchicalMenuMode, HierarchicalMenuItemContainer} from "./hierarchical-menu.service";
+import {HierarchicalMenuItem, HierarchicalMenuMode, HierarchicalMenuConfig} from "./hierarchical-menu.service";
 
 @Component({
     selector: "hierarchical-menu",
     template: `
         <div class="hierarchical-menu">
-            <hierarchical-menu-item [menuItems]="itemContainer.menuItems"></hierarchical-menu-item>
+            <hierarchical-menu-item [items]="config.menuItems" [config]="config"></hierarchical-menu-item>
         </div>
     `
     // styleUrls: [ "src/hierarchical-menu.style.scss" ],
@@ -15,7 +15,7 @@ export class HierarchicalMenuComponent implements OnInit {
 
     private _mode: HierarchicalMenuMode = HierarchicalMenuMode.HIERARCHICAL;
 
-    private _itemContainer: HierarchicalMenuItemContainer;
+    private _config: HierarchicalMenuConfig;
 
     @Input() set mode(value: string) {
         if (value === "flat") {
@@ -33,21 +33,19 @@ export class HierarchicalMenuComponent implements OnInit {
         return this._mode;
     }
 
-    @Input() set itemContainer(itemContainer: HierarchicalMenuItemContainer) {
+    @Input() set config(itemContainer: HierarchicalMenuConfig) {
         if (itemContainer) {
+            this._config = itemContainer;
             if (this._mode === HierarchicalMenuMode.FLAT) {
-                this._itemContainer = new HierarchicalMenuItemContainer();
-                this._itemContainer.menuItems = this.treeify(itemContainer.menuItems);
-            } else {
-                this._itemContainer = itemContainer;
+                this._config.menuItems = this.treeify(itemContainer.menuItems);
             }
         } else {
-            this._itemContainer = new HierarchicalMenuItemContainer();
+            this._config = new HierarchicalMenuConfig();
         }
     }
 
-    get itemContainer(): HierarchicalMenuItemContainer{
-        return this._itemContainer;
+    get config(): HierarchicalMenuConfig{
+        return this._config;
     }
 
     treeify(flatList: Array<HierarchicalMenuItem>): Array<HierarchicalMenuItem> {
@@ -81,7 +79,7 @@ export class HierarchicalMenuComponent implements OnInit {
 
     reset() {
         this.mode = '';
-        this.itemContainer = new HierarchicalMenuItemContainer();
+        this._config = new HierarchicalMenuConfig();
     }
 
 }

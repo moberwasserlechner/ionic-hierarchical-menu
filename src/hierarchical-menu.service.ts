@@ -11,15 +11,6 @@ export class DefaultI18nSupport implements PipeTransform  {
     }
 }
 /**
- * Component config
- */
-@Injectable()
-export class HierarchicalMenuConfig {
-    itemMode: HierarchicalMenuMode = HierarchicalMenuMode.HIERARCHICAL;
-    i18nSupport: PipeTransform = new DefaultI18nSupport();
-}
-
-/**
  * Component option data structure form. In which form are the menu items represented
  */
 export enum HierarchicalMenuMode {
@@ -27,13 +18,15 @@ export enum HierarchicalMenuMode {
 }
 
 // ######################################
-// ### Component item
+// ### Config
 // ######################################
 
 @Injectable()
-export class HierarchicalMenuItemContainer {
+export class HierarchicalMenuConfig {
     private idCounter: number = 0;
     private _menuItems: Array<HierarchicalMenuItem> = [];
+    onClickLink: Function;
+    onClickExpander: Function;
 
     constructor(menuItems?: Array<HierarchicalMenuItem>) {
         this.idCounter = 0;
@@ -54,6 +47,10 @@ export class HierarchicalMenuItemContainer {
         this._menuItems.push(item);
     }
 
+    public addBefore(beforeId:string, item: HierarchicalMenuItem) {
+
+    }
+
     set menuItems(list: Array<HierarchicalMenuItem>) {
         this._menuItems = list;
     }
@@ -63,6 +60,10 @@ export class HierarchicalMenuItemContainer {
     }
 
 }
+
+// ######################################
+// ### Menu Item
+// ######################################
 
 @Injectable()
 export class HierarchicalMenuItem {
@@ -78,8 +79,11 @@ export class HierarchicalMenuItem {
     page?: any;
 
     expanded?: boolean = false;
-    parentRef?: string | null; // references with string must use the idx
+    parentRef?: string | null;
     children?: Array<HierarchicalMenuItem> = [];
+
+    onClickLink?: Function;
+    onClickExpander?: Function;
 }
 
 export enum IconMode {

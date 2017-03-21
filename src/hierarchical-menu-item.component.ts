@@ -1,41 +1,60 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {HierarchicalMenuItem, IconMode} from "./hierarchical-menu.service";
+import {HierarchicalMenuItem, IconMode, HierarchicalMenuConfig} from "./hierarchical-menu.service";
 
 @Component({
     selector: "hierarchical-menu-item",
     template: `
         <ul class="hm-level">
-            <li class="hm-item" *ngFor="let item of menuItems">
+            <li class="hm-item" *ngFor="let item of items">
                 <div [ngClass]="buildStyles(item)">
-                    <button class="hm-link" (click)="open(item)" >
+                    <button class="hm-link" (click)="onClickLink(item)" >
                         <span class="hm-icon" *ngIf="item.icon">
                             <i *ngIf="useIconsByFontAwesome(item)" class="fa {{ item.icon }}" aria-hidden="true"></i>
                             <!--#7 <i on-icon *ngIf="useIconsByIonic(item)" name="{{ item.icon }}"></ion-icon>-->
                         </span>
                         {{ item.title }}
                     </button>
-                    <button class="hm-opener" *ngIf="hasChildren(item)" (click)="toggle(item)">{{ item.expanded ? '-' : '+'}}</button>
+                    <button class="hm-expander" *ngIf="hasChildren(item)" (click)="onClickExpander(item)">{{ item.expanded ? '-' : '+'}}</button>
                 </div>
-                <hierarchical-menu-item *ngIf="item.expanded && hasChildren(item)" [menuItems]="item.children"></hierarchical-menu-item>
+                <hierarchical-menu-item *ngIf="item.expanded && hasChildren(item)" [items]="item.children" [config]="config"></hierarchical-menu-item>
             </li>
         </ul>
     `
 })
 export class HierarchicalMenuItemComponent implements OnInit {
 
-    @Input() menuItems: Array<HierarchicalMenuItem>;
+    @Input() items: Array<HierarchicalMenuItem>;
+
+    @Input() config: HierarchicalMenuConfig;
 
     ngOnInit(): void {
 
     }
 
-    toggle(item: HierarchicalMenuItem) {
+    onClickExpander(item: HierarchicalMenuItem) {
         item.expanded = !item.expanded;
+        let func: Function | null = null;
+        if (item.onClickExpander) {
+            func = item.onClickExpander;
+        } else if (this.config.onClickExpander) {
+            func = this.config.onClickExpander;
+        }
+
+        if (func) {
+            func.call(this, item);
+        }
     }
 
-    open(item: HierarchicalMenuItem) {
-        if (item) {
-            console.info("TBD: Open menu item with id="+item.id);
+    onClickLink(item: HierarchicalMenuItem) {
+        let func: Function | null = null;
+        if (item.onClickLink) {
+            func = item.onClickLink;
+        } else if (this.config.onClickLink) {
+            func = this.config.onClickLink;
+        }
+
+        if (func) {
+            func.call(this, item);
         }
     }
 
