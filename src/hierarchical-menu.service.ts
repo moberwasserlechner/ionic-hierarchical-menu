@@ -1,7 +1,6 @@
 import {Injectable, PipeTransform, Pipe} from "@angular/core";
 
 
-
 @Pipe({ name: 'i18nSupport'})
 export class DefaultI18nSupport implements PipeTransform  {
     constructor() {}
@@ -24,6 +23,8 @@ export enum HierarchicalMenuMode {
 @Injectable()
 export class HierarchicalMenuConfig {
     private _menuItems: Array<HierarchicalMenuItem> = [];
+    private dirtyList: boolean = false;
+
     useTitleAsId: boolean = true;
     onClickLink: Function;
     onClickExpander: Function;
@@ -61,6 +62,8 @@ export class HierarchicalMenuConfig {
                 });
             }
 
+            this.dirtyList = true;
+
             if (!beforeItem) {
                 this._menuItems.push(item);
             } else {
@@ -70,8 +73,14 @@ export class HierarchicalMenuConfig {
         }
     }
 
+    public addArray(items: HierarchicalMenuItem[]) {
+        items.forEach(i => {
+            this.addOneBefore(null, i);
+        });
+    }
+
     /**
-     * Add one or more menu items before a existing
+     * Add one or more (argument list) menu items before a existing item identified by its id.
      * @param beforeId the menu item's id
      * @param items
      */
@@ -81,7 +90,12 @@ export class HierarchicalMenuConfig {
         });
     }
 
-    public addBeforeAsArray(beforeId: string, items: HierarchicalMenuItem[]) {
+    /**
+     * Add a array of menu items before a existing item identified by its id.
+     * @param beforeId the menu item's id
+     * @param items
+     */
+    public addArrayBefore(beforeId: string, items: HierarchicalMenuItem[]) {
         items.forEach(i => {
             this.addOneBefore(beforeId, i);
         });
@@ -89,12 +103,16 @@ export class HierarchicalMenuConfig {
 
     set menuItems(list: Array<HierarchicalMenuItem>) {
         this._menuItems = list;
+        this.dirtyList = true;
     }
 
-    get menuItems() {
+    get menuItems(): Array<HierarchicalMenuItem> {
         return this._menuItems || [];
     }
 
+    isDirty():boolean {
+        return this.dirtyList;
+    }
 }
 
 // ######################################
@@ -113,6 +131,7 @@ export class HierarchicalMenuItem {
     style?: string | null;
 
     page?: any;
+    pageIndex?: number;
 
     expanded?: boolean = false;
     parentRef?: string | null;

@@ -18,7 +18,7 @@ export class HierarchicalMenuComponent implements OnInit {
     private _config: HierarchicalMenuConfig;
 
     @Input() set mode(value: string) {
-        if (value === "flat") {
+        if (value && value.toLowerCase() === "flat") {
             this._mode = HierarchicalMenuMode.FLAT;
         } else {
             this._mode = HierarchicalMenuMode.HIERARCHICAL;
@@ -36,15 +36,20 @@ export class HierarchicalMenuComponent implements OnInit {
     @Input() set config(itemContainer: HierarchicalMenuConfig) {
         if (itemContainer) {
             this._config = itemContainer;
-            if (this._mode === HierarchicalMenuMode.FLAT) {
-                this._config.menuItems = this.treeify(itemContainer.menuItems);
-            }
+            // if (this._mode === HierarchicalMenuMode.FLAT) {
+            //     this._config.menuItems = this.treeify(itemContainer.menuItems);
+            //     this._config.dirtyList = false;
+            // }
         } else {
             this._config = new HierarchicalMenuConfig();
         }
     }
 
     get config(): HierarchicalMenuConfig{
+        if (this._mode === HierarchicalMenuMode.FLAT && this._config.isDirty()) {
+            this._config.menuItems = this.treeify(this._config.menuItems);
+        }
+
         return this._config;
     }
 

@@ -1,10 +1,6 @@
-import {TestBed, ComponentFixture} from '@angular/core/testing';
-
+import {TestBed, ComponentFixture} from "@angular/core/testing";
 import {HierarchicalMenuItemComponent} from "../src/hierarchical-menu-item.component";
-import {
-    DefaultI18nSupport, HierarchicalMenuItem, HierarchicalMenuMode,
-    HierarchicalMenuConfig
-} from "../src/hierarchical-menu.service";
+import {HierarchicalMenuItem, HierarchicalMenuMode, HierarchicalMenuConfig} from "../src/hierarchical-menu.service";
 import {HierarchicalMenuComponent} from "../src/hierarchical-menu.component";
 
 describe("HierarchicalMenuComponent", () => {
@@ -124,7 +120,7 @@ describe("HierarchicalMenuComponent", () => {
 
         expect(config.menuItems.length).toBe(4);
 
-        config.addBeforeAsArray("d", [{title: "d"}, {title:"e"}, {title:"f"}]);
+        config.addArrayBefore("d", [{title: "d"}, {title:"e"}, {title:"f"}]);
         expect(config.menuItems.length).toBe(7);
         expect(config.menuItems[4].title).toBe("e");
 
