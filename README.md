@@ -22,7 +22,7 @@ System.config({
 });
 ```
 
-#### Themeing
+#### Theming / Styles
 
 The npm module includes both scss and css files. Depending on your use case you have to include them in your project to get the themes or default styles.
 
@@ -108,7 +108,7 @@ page-example {
 
   @import "hierarchical-menu.themes.default";
 
-  other-styles {
+  .other-styles {
   
   }
 }
