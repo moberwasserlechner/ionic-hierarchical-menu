@@ -25,28 +25,29 @@ describe("HierarchicalMenuComponent", () => {
     });
 
     it("should be flat mode ", () => {
-        componentFixture.componentInstance.mode = "flat";
-        expect(componentFixture.componentInstance.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.FLAT);
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemMode = "flat";
+        expect(config.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.FLAT);
     });
 
     it("should be hierarchical mode ", () => {
-        componentFixture.componentInstance.mode = "foobar";
-        expect(componentFixture.componentInstance.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.HIERARCHICAL);
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemMode = "foobar";
+        expect(config.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.HIERARCHICAL);
 
-        componentFixture.componentInstance.mode = "";
-        expect(componentFixture.componentInstance.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.HIERARCHICAL);
+        config.menuItemMode = "";
+        expect(config.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.HIERARCHICAL);
     });
 
     it("should build a hierarchy from a simple flat list", () => {
-        componentFixture.componentInstance.mode = "flat";
-
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemMode = "flat";
         config.add({ id: "b", title: "item b ref a", parentRef: "a" });
         config.add({ id: "a", title: "item a", parentRef: "" });
         config.add({ id: "c", title: "item c ref b", parentRef: "b" });
 
         componentFixture.componentInstance.config = config;
-        expect(componentFixture.componentInstance.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.FLAT);
+        expect(config.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.FLAT);
 
         let menuItems: Array<HierarchicalMenuItem> = componentFixture.componentInstance.config.menuItems;
         // only one item or top level item respectively
@@ -57,9 +58,9 @@ describe("HierarchicalMenuComponent", () => {
     });
 
     it("should build a little more complex hierarchy from a flat list", () => {
-        componentFixture.componentInstance.mode = "flat";
 
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemMode = "flat";
         config.add({title: "menu.personal.section"});
         config.add({title: "menu.personal.home", parentRef: "menu.personal.section"});
         config.add({title: "menu.personal.profile", parentRef: "menu.personal.section"});
@@ -70,7 +71,7 @@ describe("HierarchicalMenuComponent", () => {
         config.add({title: "menu.settings.about", parentRef: "menu.settings.section"});
 
         componentFixture.componentInstance.config = config;
-        expect(componentFixture.componentInstance.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.FLAT);
+        expect(config.getHierarchicalMenuMode()).toBe(HierarchicalMenuMode.FLAT);
 
         let menuItems: Array<HierarchicalMenuItem> = componentFixture.componentInstance.config.menuItems;
         // only one item or top level item respectively

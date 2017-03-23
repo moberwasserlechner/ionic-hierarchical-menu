@@ -10,7 +10,7 @@ export class DefaultI18nSupport implements PipeTransform  {
     }
 }
 /**
- * Component option data structure form. In which form are the menu items represented
+ * Menu item mode describes the form of incoming menu items. Are the already hierarchical or add only referencing their parents.
  */
 export enum HierarchicalMenuMode {
     FLAT, HIERARCHICAL
@@ -23,6 +23,7 @@ export enum HierarchicalMenuMode {
 @Injectable()
 export class HierarchicalMenuConfig {
     private _menuItems: Array<HierarchicalMenuItem> = [];
+    private _menuItemMode: HierarchicalMenuMode = HierarchicalMenuMode.HIERARCHICAL;
     private dirtyList: boolean = false;
 
     useTitleAsId: boolean = true;
@@ -113,6 +114,27 @@ export class HierarchicalMenuConfig {
     isDirty():boolean {
         return this.dirtyList;
     }
+
+    /**
+     * Menu item mode describes the form of incoming menu items. Are the already hierarchical or add only referencing their parents.
+     * @param value use flat for not hierarchical items. defaults to hierarchical.
+     */
+    set menuItemMode(value: string) {
+        if (value && value.toLowerCase() === "flat") {
+            this._menuItemMode = HierarchicalMenuMode.FLAT;
+        } else {
+            this._menuItemMode = HierarchicalMenuMode.HIERARCHICAL;
+        }
+    }
+
+    get menuItemMode(): string {
+        return this._menuItemMode.toString();
+    }
+
+    getHierarchicalMenuMode(): HierarchicalMenuMode {
+        return this._menuItemMode;
+    }
+
 }
 
 // ######################################

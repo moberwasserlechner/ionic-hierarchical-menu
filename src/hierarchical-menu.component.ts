@@ -12,25 +12,7 @@ import {HierarchicalMenuItem, HierarchicalMenuMode, HierarchicalMenuConfig} from
 })
 export class HierarchicalMenuComponent implements OnInit {
 
-    private _mode: HierarchicalMenuMode = HierarchicalMenuMode.HIERARCHICAL;
-
     private _config: HierarchicalMenuConfig;
-
-    @Input() set mode(value: string) {
-        if (value && value.toLowerCase() === "flat") {
-            this._mode = HierarchicalMenuMode.FLAT;
-        } else {
-            this._mode = HierarchicalMenuMode.HIERARCHICAL;
-        }
-    }
-
-    get mode(): string {
-        return this._mode.toString();
-    }
-
-    public getHierarchicalMenuMode(): HierarchicalMenuMode {
-        return this._mode;
-    }
 
     @Input() set config(itemContainer: HierarchicalMenuConfig) {
         if (itemContainer) {
@@ -45,7 +27,7 @@ export class HierarchicalMenuComponent implements OnInit {
     }
 
     get config(): HierarchicalMenuConfig{
-        if (this._mode === HierarchicalMenuMode.FLAT && this._config.isDirty()) {
+        if (this._config.getHierarchicalMenuMode() === HierarchicalMenuMode.FLAT && this._config.isDirty()) {
             this._config.menuItems = this.treeify(this._config.menuItems);
         }
 
@@ -82,7 +64,6 @@ export class HierarchicalMenuComponent implements OnInit {
     }
 
     reset() {
-        this.mode = '';
         this._config = new HierarchicalMenuConfig();
     }
 
