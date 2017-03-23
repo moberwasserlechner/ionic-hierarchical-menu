@@ -26,17 +26,18 @@ System.config({
 
 The npm module includes both scss and css files. Depending on your use case you have to include them in your project to get the themes or default styles.
 
-These theme exist
+These themes are included
 - default ... hierarchical-menu.themes.default
 - dark ... TBD
 
 ##### Ionic 2
 
-In Ionic we can use the scss files but have to customize Ionic's build process so the module's styles are recogniced.
+In Ionic we can use SASS but have to customize Ionic's build process so the module styles are recognized.
 For that can use the `config` section in our `packages.json`
 
-```js
-"dependencies": {
+```json
+{
+  "dependencies": {
     "@angular/common": "2.4.8",
     "@angular/compiler": "2.4.8",
     "@angular/compiler-cli": "2.4.8",
@@ -64,10 +65,11 @@ For that can use the `config` section in our `packages.json`
   "config": {
     "ionic_sass": "./config/ionic.sass.config.js"
   }
+}
 ```
 
 In detail you have to overwrite the `ionic_sass` config script. A good starting point is the [original script](https://github.com/driftyco/ionic-app-scripts/blob/master/config/sass.config.js). 
-Copy it for example to `./config/ionic.sass.config.js` and `node_modules/ng-hierarchical-menu/themes/scss` to the `includePaths` property.
+Copy it for example to `./config/ionic.sass.config.js` and add `node_modules/ng-hierarchical-menu/themes/scss` to the `includePaths` property.
  
 ```js
 /**
@@ -80,15 +82,17 @@ Copy it for example to `./config/ionic.sass.config.js` and `node_modules/ng-hier
         'node_modules/ionic-angular/fonts',
         // add this line
         'node_modules/ng-hierarchical-menu/themes/scss'
-    ],
+    ]
 ```
 
-Note: It would be nices to just add the line instead of overwriting the whole file, because on every new version of the ionic-app-scripts you have to check for changes.
+*Note:* It would be nices to just add the line instead of overwriting the whole file, because on every new version of the ionic-app-scripts you have to check for changes.
 
 Now simply import the styles in your page.
 
-```js
+```scss
 page-example {
+  // overwrite component variables
+
   // menu container
 
   // menu item
@@ -103,11 +107,16 @@ page-example {
   $hierarchical-menu-hover-bg-color: $color2;
 
   @import "hierarchical-menu.themes.default";
+
+  other-styles {
+  
+  }
+}
 ```
 
-##### Angular 2+
-
-TBD 
+Resources:
+- https://ionicframework.com/docs/v2/resources/app-scripts/
+- https://github.com/driftyco/ionic-app-scripts#custom-configuration
 
 
 #### Import the `HierarchicalMenuModule`
