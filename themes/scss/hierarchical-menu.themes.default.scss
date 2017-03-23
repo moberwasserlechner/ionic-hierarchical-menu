@@ -1,8 +1,4 @@
-$hierarchical-menu-color: $color4;
-$hierarchical-menu-active-bg-color: $color4;
-$hierarchical-menu-item-border-color: $color4;
-$hierarchical-menu-hover-bg-color: $color2;
-$hierarchical-menu-hover-fg-color: $color4;
+@import "variables";
 
 .hierarchical-menu {
   width: 100%;
@@ -26,51 +22,37 @@ $hierarchical-menu-hover-fg-color: $color4;
 
     // class on the div in li
     .hm-item-line {
-      border-bottom: 1px solid $hierarchical-menu-item-border-color;
+      border-bottom: 1px solid $hierarchical-menu-item-separator-color;
       padding: 8px 10px;
       width: 100%;
-      a {
-        text-decoration: none;
-        :hover {
-          color: $hierarchical-menu-color;
-        }
-      }
-
       button {
         background:none; // !important;
         border:none;
         padding: 0; // !important;
         font: inherit;
         text-align: left;
-        /*border is optional*/
-        //border-bottom:1px solid #444;
-        //cursor: pointer;
       }
-
 
       .hm-link {
-        color: $hierarchical-menu-color;
-
+        color: $hierarchical-menu-text-color;
       }
+
       .hm-expander {
-        color: $hierarchical-menu-color;
+        color: $hierarchical-menu-text-color;
         float: right;
         text-align: right !important;
         font-size: larger;
         vertical-align: middle;
       }
 
-      //:last-child {
-      //  border-bottom: 0 !important;
-      //}
-
       .active {
+        color: $hierarchical-menu-active-text-color;
         background-color: $hierarchical-menu-active-bg-color;
       }
     }
     .hm-item-line:hover {
+      color: $hierarchical-menu-hover-text-color;
       background-color: $hierarchical-menu-hover-bg-color;
-      color: $hierarchical-menu-hover-fg-color;
     }
   }
 }

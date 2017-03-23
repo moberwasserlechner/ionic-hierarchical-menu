@@ -8,8 +8,7 @@ import {HierarchicalMenuItem, HierarchicalMenuMode, HierarchicalMenuConfig} from
             <hierarchical-menu-item [items]="config.menuItems" [config]="config"></hierarchical-menu-item>
         </div>
     `
-    // styleUrls: [ "src/hierarchical-menu.style.scss" ],
-    // encapsulation: ViewEncapsulation.None
+    // do not add styles here! Any user must include the scss or css theme herself depending on the use case
 })
 export class HierarchicalMenuComponent implements OnInit {
 
