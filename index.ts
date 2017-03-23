@@ -4,8 +4,6 @@ import { HierarchicalMenuConfig, hierarchicalMenuServiceFactory, HierarchicalMen
 import { HierarchicalMenuComponent } from "./src/hierarchical-menu.component";
 import { HierarchicalMenuItemComponent } from "./src/hierarchical-menu-item.component";
 
-// export public api
-// TODO others
 export { HierarchicalMenuService, HierarchicalMenuConfig } from './src/hierarchical-menu.service';
 export { HierarchicalMenuComponent } from './src/hierarchical-menu.component';
 

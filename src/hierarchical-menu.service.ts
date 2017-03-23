@@ -1,14 +1,6 @@
-import {Injectable, PipeTransform, Pipe} from "@angular/core";
+import {Injectable, PipeTransform} from "@angular/core";
 
 
-@Pipe({ name: 'i18nSupport'})
-export class DefaultI18nSupport implements PipeTransform  {
-    constructor() {}
-
-    transform(value: any, ...args: any[]): any {
-        return value;
-    }
-}
 /**
  * Menu item mode describes the form of incoming menu items. Are the already hierarchical or add only referencing their parents.
  */
@@ -29,6 +21,7 @@ export class HierarchicalMenuConfig {
     useTitleAsId: boolean = true;
     onClickLink: Function;
     onClickExpander: Function;
+    onTranslate: Function;
 
     constructor(menuItems?: Array<HierarchicalMenuItem>) {
         this.useTitleAsId = true;
@@ -144,6 +137,7 @@ export class HierarchicalMenuConfig {
 @Injectable()
 export class HierarchicalMenuItem {
     title: string;
+    translateTitleEnabled?: boolean = true;
 
     id?: string;
     order?: number = 0;

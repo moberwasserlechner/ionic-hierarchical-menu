@@ -1,6 +1,5 @@
 import {TestBed, ComponentFixture} from "@angular/core/testing";
 import {HierarchicalMenuItemComponent} from "../src/hierarchical-menu-item.component";
-import {DefaultI18nSupport} from "../src/hierarchical-menu.service";
 
 describe("HierarchicalMenuItemComponent", () => {
     let componentFixture: ComponentFixture<HierarchicalMenuItemComponent>;
@@ -8,7 +7,7 @@ describe("HierarchicalMenuItemComponent", () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [HierarchicalMenuItemComponent, DefaultI18nSupport]
+            declarations: [HierarchicalMenuItemComponent]
         });
         TestBed.compileComponents();
     });
