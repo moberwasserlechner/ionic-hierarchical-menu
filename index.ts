@@ -1,15 +1,15 @@
 import {NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { HierarchicalMenuConfig, hierarchicalMenuServiceFactory, HierarchicalMenuService } from "./src/hierarchical-menu.service";
+import { HierarchicalMenuConfig, HierarchicalMenuItem } from "./src/hierarchical-menu.service";
 import { HierarchicalMenuComponent } from "./src/hierarchical-menu.component";
 import { HierarchicalMenuItemComponent } from "./src/hierarchical-menu-item.component";
 
-export { HierarchicalMenuService, HierarchicalMenuConfig } from './src/hierarchical-menu.service';
+export { HierarchicalMenuConfig } from './src/hierarchical-menu.service';
+export { HierarchicalMenuItem } from './src/hierarchical-menu.service';
 export { HierarchicalMenuComponent } from './src/hierarchical-menu.component';
 
 export let providers = [
-    HierarchicalMenuConfig,
-    { provide: HierarchicalMenuService, useFactory: hierarchicalMenuServiceFactory, deps: [HierarchicalMenuConfig] }
+    HierarchicalMenuConfig, HierarchicalMenuItem
 ];
 
 @NgModule({

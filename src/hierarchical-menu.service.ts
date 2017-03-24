@@ -63,6 +63,10 @@ export class HierarchicalMenuConfig {
         }
     }
 
+    /**
+     * Add a array of menuItems to the end
+     * @param items
+     */
     public addArray(items: HierarchicalMenuItem[]) {
         items.forEach(i => {
             this.addOneBefore(null, i);
@@ -137,14 +141,14 @@ export enum IconMode {
     FONTAWESOME, IONIC
 }
 
-export function hierarchicalMenuServiceFactory(config: HierarchicalMenuConfig): HierarchicalMenuService  {
-    return new HierarchicalMenuService(config);
-}
-
-@Injectable()
-export class HierarchicalMenuService {
-
-    constructor(private config: HierarchicalMenuConfig) {}
-
-}
+// export function hierarchicalMenuServiceFactory(config: HierarchicalMenuConfig): HierarchicalMenuService  {
+//     return new HierarchicalMenuService(config);
+// }
+//
+// @Injectable()
+// export class HierarchicalMenuService {
+//
+//     constructor(private config: HierarchicalMenuConfig) {}
+//
+// }
 
