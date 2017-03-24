@@ -1,23 +1,19 @@
-import {Injectable, PipeTransform} from "@angular/core";
+import {Injectable} from "@angular/core";
 
 
 /**
  * Menu item mode describes the form of incoming menu items. Are the already hierarchical or add only referencing their parents.
  */
-export enum HierarchicalMenuMode {
+export enum MenuItemStructure {
     FLAT, HIERARCHICAL
 }
-
-// ######################################
-// ### Config
-// ######################################
 
 @Injectable()
 export class HierarchicalMenuConfig {
     private _menuItems: Array<HierarchicalMenuItem> = [];
-    private _menuItemMode: HierarchicalMenuMode = HierarchicalMenuMode.HIERARCHICAL;
     private dirtyList: boolean = false;
 
+    menuItemStructure: MenuItemStructure = MenuItemStructure.HIERARCHICAL;
     useTitleAsId: boolean = true;
     onClickLink: Function;
     onClickExpander: Function;
@@ -108,26 +104,6 @@ export class HierarchicalMenuConfig {
         return this.dirtyList;
     }
 
-    /**
-     * Menu item mode describes the form of incoming menu items. Are the already hierarchical or add only referencing their parents.
-     * @param value use flat for not hierarchical items. defaults to hierarchical.
-     */
-    set menuItemMode(value: string) {
-        if (value && value.toLowerCase() === "flat") {
-            this._menuItemMode = HierarchicalMenuMode.FLAT;
-        } else {
-            this._menuItemMode = HierarchicalMenuMode.HIERARCHICAL;
-        }
-    }
-
-    get menuItemMode(): string {
-        return this._menuItemMode.toString();
-    }
-
-    getHierarchicalMenuMode(): HierarchicalMenuMode {
-        return this._menuItemMode;
-    }
-
 }
 
 // ######################################
@@ -137,7 +113,7 @@ export class HierarchicalMenuConfig {
 @Injectable()
 export class HierarchicalMenuItem {
     title: string;
-    translateTitleEnabled?: boolean = true;
+    translateable?: boolean = true;
 
     id?: string;
     order?: number = 0;

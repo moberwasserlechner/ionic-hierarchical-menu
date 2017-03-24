@@ -12,7 +12,7 @@ import {HierarchicalMenuItem, IconMode, HierarchicalMenuConfig} from "./hierarch
                             <i *ngIf="useIconsByFontAwesome(item)" class="fa {{ item.icon }}" aria-hidden="true"></i>
                             <!--#7 <i on-icon *ngIf="useIconsByIonic(item)" name="{{ item.icon }}"></ion-icon>-->
                         </span>
-                        {{ translateTitle(item) }}
+                        {{ translateIt(item) }}
                     </button>
                     <button class="hm-expander" *ngIf="hasChildren(item)" (click)="onClickExpander(item)">{{ item.expanded ? '-' : '+'}}</button>
                 </div>
@@ -75,8 +75,8 @@ export class HierarchicalMenuItemComponent implements OnInit {
         return "hm-item-line " + (menuItem.style || "");
     }
 
-    translateTitle(menuItem: HierarchicalMenuItem):string {
-        if (this.config.onTranslate && menuItem.translateTitleEnabled) {
+    translateIt(menuItem: HierarchicalMenuItem):string {
+        if (this.config.onTranslate && menuItem.translateable) {
             return this.config.onTranslate.call(this, menuItem.title);
         }
         return menuItem.title;

@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {HierarchicalMenuItem, HierarchicalMenuMode, HierarchicalMenuConfig} from "./hierarchical-menu.service";
+import {HierarchicalMenuItem, MenuItemStructure, HierarchicalMenuConfig} from "./hierarchical-menu.service";
 
 @Component({
     selector: "hierarchical-menu",
@@ -17,7 +17,7 @@ export class HierarchicalMenuComponent implements OnInit {
     @Input() set config(itemContainer: HierarchicalMenuConfig) {
         if (itemContainer) {
             this._config = itemContainer;
-            // if (this._mode === HierarchicalMenuMode.FLAT) {
+            // if (this._mode === MenuItemStructure.FLAT) {
             //     this._config.menuItems = this.treeify(itemContainer.menuItems);
             //     this._config.dirtyList = false;
             // }
@@ -27,7 +27,7 @@ export class HierarchicalMenuComponent implements OnInit {
     }
 
     get config(): HierarchicalMenuConfig{
-        if (this._config.getHierarchicalMenuMode() === HierarchicalMenuMode.FLAT && this._config.isDirty()) {
+        if (this._config.menuItemStructure === MenuItemStructure.FLAT && this._config.isDirty()) {
             this._config.menuItems = this.treeify(this._config.menuItems);
         }
 
