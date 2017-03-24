@@ -10,6 +10,7 @@
     "serve": "http-server ./dist -a 0.0.0.0 -p 9000",
     "dist": "npm run build && npm run theme && cp package.json dist/ && cp README.md dist/",
     "pack": "npm run dist && npm pack dist/",
+    "publish": "npm run dist && cd dist/ && npm publish --access public",
     "test": "karma start",
     "test-watch": "ngc && karma start --no-single-run --auto-watch",
     "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html",
