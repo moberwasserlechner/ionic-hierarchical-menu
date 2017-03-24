@@ -139,5 +139,103 @@ export class AppModule {
 
 #### Use the `HierarchicalMenuComponent`
 
+This example show a menu page I use in a Ionic 2 project.
+
+
+```ts
+@Component({
+    selector: 'page-menu',
+    template: '<hierarchical-menu [config]="menuConfig"></hierarchical-menu>'
+})
+export class MenuPage {
+
+    menuConfig: HierarchicalMenuConfig;
+    
+    constructor(
+        // ionic2 event bus
+        public eventBus: Events,
+        // ngx-translate translation service
+        public i18n: TranslateService) {
+        this.buildMenu();
+    }
+    
+    buildMenu() {
+        // create the config object
+        this.menuConfig = new HierarchicalMenuConfig();
+        // the menu items are structured a flat list
+        this.menuConfig.menuItemStructure = MenuItemStructure.FLAT;
+        // translate menu item titles using this callback
+        this.menuConfig.onTranslate = (code: string) => {
+            return this.i18n.instant(code);
+        };
+        // if there is a page assigned to the menu item send a navigation event
+        this.menuConfig.onClickLink = (item: HierarchicalMenuItem) => {
+            if (item.page) {
+                let navEvent = new NavEvent();
+                navEvent.page = item.page;
+                if (item.pageIndex) {
+                    navEvent.pageIndex = item.pageIndex;
+                }
+                this.eventBus.publish(AppConstants.Event.GO_TO_PAGE, navEvent);
+            }
+        };
+        // run this callback if the expander is clicked
+        this.menuConfig.onClickExpander = (item: HierarchicalMenuItem) => {
+             console.info("config: parent menu#"+item.id+" "+(item.expanded?"opened":"closed"));
+        };
+
+        // add a parent menu item with a special style and expand it per default
+        this.menuConfig.add({title: "menu.personal.section", style: "top-section", expanded: true});
+        // Add simple menu item with a reference to the parent. Because we said that items are delivered as flat list. 
+        // The component will create the hierarchical structure by itself
+        this.menuConfig.add({title: "menu.personal.home", parentRef: "menu.personal.section", page: HomePage});
+        // Another menu item
+        this.menuConfig.add({title: "menu.personal.profile", parentRef: "menu.personal.section", page: ProfilePage});
+        // Another menu item with a pageIndex because its a tabbed page
+        this.menuConfig.add({title: "menu.personal.events", parentRef: "menu.personal.section", page: TabsPage, pageIndex: 0});
+        // A parent menu item
+        this.menuConfig.add({title: "menu.settings.section", style: "top-section", expanded: true});
+        this.menuConfig.add({title: "menu.settings.feedback", parentRef: "menu.settings.section"});
+        this.menuConfig.add({title: "menu.settings.about", parentRef: "menu.settings.section"});
+        // use a special click callback for this menu item
+        this.menuConfig.add({title: "menu.settings.logout", parentRef: "menu.settings.section", onClickLink: ()=> {
+            this.logout();
+        }});
+     }
+```
+
+It's also possible to load menu items after first init, e.g. from a backend service.
+   
+```ts   
+     // 
+     loadMenuItems() {
+         const ITEM_ID = "menu.chosen_club.section";
+         this.menuConfig.addBefore("menu.settings.section", { id: ITEM_ID, title: "Special section", expanded: true, style: "special-section"});
+         
+         // this is a 
+         this.backendService.getMenuItems().subscribe(
+             (menuItems) => {
+                 menuItems.forEach(i => {
+                     if (i.parentRef == null) {
+                         i.style = "top-section";
+                         i.parentRef = ITEM_ID;
+                     } else {
+                         i.onClickLink = (item: HierarchicalMenuItem) => {
+                            this.openRemoteMenuItemPage(item);
+                         }
+                     }
+                 });
+    
+                 this.menuConfig.addArray(moduleMenuItems);
+             },
+             error => {
+                 console.log(error);
+             }
+         );
+     }
+    
+}
+```
+
 # License
 [MIT](/LICENSE)
