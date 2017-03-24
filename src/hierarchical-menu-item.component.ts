@@ -76,7 +76,7 @@ export class HierarchicalMenuItemComponent implements OnInit {
     }
 
     translateIt(menuItem: HierarchicalMenuItem):string {
-        if (this.config.onTranslate && menuItem.translateable) {
+        if (this.config.onTranslate && !menuItem.doNotTranslate) {
             return this.config.onTranslate.call(this, menuItem.title);
         }
         return menuItem.title;

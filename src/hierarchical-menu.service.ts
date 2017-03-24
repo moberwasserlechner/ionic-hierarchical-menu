@@ -113,7 +113,7 @@ export class HierarchicalMenuConfig {
 @Injectable()
 export class HierarchicalMenuItem {
     title: string;
-    translateable?: boolean = true;
+    doNotTranslate?: boolean = false;
 
     id?: string;
     order?: number = 0;
