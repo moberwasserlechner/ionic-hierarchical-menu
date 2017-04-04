@@ -59,6 +59,10 @@ export class HierarchicalMenuItemComponent implements OnInit {
         if (func) {
             func.call(this, menuItem);
         }
+
+        if ((!func || !menuItem.page) && this.hasChildren(menuItem)) {
+            this.onClickExpander(menuItem);
+        }
     }
 
 
