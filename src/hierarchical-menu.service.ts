@@ -10,7 +10,7 @@ export enum MenuItemStructure {
 
 @Injectable()
 export class HierarchicalMenuConfig {
-    private _menuItems: Array<HierarchicalMenuItem> = [];
+    private _menuItems: HierarchicalMenuItem[] = [];
     private dirtyList: boolean = false;
 
     menuItemStructure: MenuItemStructure = MenuItemStructure.HIERARCHICAL;
@@ -19,13 +19,8 @@ export class HierarchicalMenuConfig {
     onClickExpander: Function;
     onTranslate: Function;
 
-    constructor(menuItems?: Array<HierarchicalMenuItem>) {
+    constructor() {
         this.useTitleAsId = true;
-        if (menuItems) {
-            menuItems.forEach(i => {
-                this.add(i);
-            });
-        }
     }
 
     /**
@@ -95,12 +90,12 @@ export class HierarchicalMenuConfig {
         });
     }
 
-    set menuItems(list: Array<HierarchicalMenuItem>) {
+    set menuItems(list: HierarchicalMenuItem[]) {
         this._menuItems = list;
         this.dirtyList = true;
     }
 
-    get menuItems(): Array<HierarchicalMenuItem> {
+    get menuItems(): HierarchicalMenuItem[] {
         return this._menuItems || [];
     }
 
@@ -131,7 +126,7 @@ export class HierarchicalMenuItem {
 
     expanded?: boolean = false;
     parentRef?: string | null;
-    children?: Array<HierarchicalMenuItem> = [];
+    children?: HierarchicalMenuItem[] = [];
 
     onClickLink?: Function;
     onClickExpander?: Function;
@@ -140,15 +135,3 @@ export class HierarchicalMenuItem {
 export enum IconMode {
     FONTAWESOME, IONIC
 }
-
-// export function hierarchicalMenuServiceFactory(config: HierarchicalMenuConfig): HierarchicalMenuService  {
-//     return new HierarchicalMenuService(config);
-// }
-//
-// @Injectable()
-// export class HierarchicalMenuService {
-//
-//     constructor(private config: HierarchicalMenuConfig) {}
-//
-// }
-

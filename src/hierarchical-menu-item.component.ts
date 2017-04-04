@@ -23,7 +23,7 @@ import {HierarchicalMenuItem, IconMode, HierarchicalMenuConfig} from "./hierarch
 })
 export class HierarchicalMenuItemComponent implements OnInit {
 
-    @Input() items: Array<HierarchicalMenuItem>;
+    @Input() items: HierarchicalMenuItem[];
 
     @Input() config: HierarchicalMenuConfig;
 

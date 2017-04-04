@@ -34,8 +34,8 @@ export class HierarchicalMenuComponent implements OnInit {
         return this._config;
     }
 
-    treeify(flatList: Array<HierarchicalMenuItem>): Array<HierarchicalMenuItem> {
-        let treeList: Array<HierarchicalMenuItem> = [];
+    treeify(flatList: HierarchicalMenuItem[]): HierarchicalMenuItem[] {
+        let treeList: HierarchicalMenuItem[] = [];
         let lookup:any = {};
         flatList.forEach(obj => {
             lookup[<string>obj.id] = obj;

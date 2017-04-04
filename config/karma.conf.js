@@ -55,6 +55,7 @@ module.exports = function(config) {
         browsers: [process.env.TRAVIS ? 'Firefox' : 'Chrome'],
 
         singleRun: true
+
     };
 
     config.set(configuration);

@@ -19,6 +19,7 @@ coverage
 bundles
 .vscode
 dist
+aot
 *.tgz
 
 #################

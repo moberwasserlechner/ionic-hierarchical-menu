@@ -2,14 +2,9 @@
   "compilerOptions": {
     "sourceMap": true,
     "declaration": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noUnusedParameters": false,
-    "noUnusedLocals": false,
-    "strictNullChecks": true,
+    "inlineSources": true,
     "noImplicitAny": true,
-    "stripInternal": true,
-    "skipLibCheck": true,
     "lib": [
       "es2015", "dom"
     ],
@@ -33,9 +28,7 @@
     "dist"
   ],
   "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "skipTemplateCodegen": true,
-    "genDir": "dist"
+    "genDir": "aot"
   },
   "awesomeTypeScriptLoaderOptions": {
     "useWebpackText": true

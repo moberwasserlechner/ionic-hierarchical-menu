@@ -11,6 +11,7 @@ npm-debug.log
 tests
 .github
 coverage
+aot/*
 !*.metadata.json
 !*.d.ts
 !dist/**

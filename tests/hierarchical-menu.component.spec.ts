@@ -40,7 +40,7 @@ describe("HierarchicalMenuComponent", () => {
         componentFixture.componentInstance.config = config;
         expect(config.menuItemStructure).toBe(MenuItemStructure.FLAT);
 
-        let menuItems: Array<HierarchicalMenuItem> = componentFixture.componentInstance.config.menuItems;
+        let menuItems: HierarchicalMenuItem[] = componentFixture.componentInstance.config.menuItems;
         // only one item or top level item respectively
         expect(menuItems.length).toBe(1);
         let parentItem = menuItems[0];
@@ -62,7 +62,7 @@ describe("HierarchicalMenuComponent", () => {
         config.add({title: "menu.settings.about", parentRef: "menu.settings.section"});
 
         componentFixture.componentInstance.config = config;
-        let menuItems: Array<HierarchicalMenuItem> = componentFixture.componentInstance.config.menuItems;
+        let menuItems: HierarchicalMenuItem[] = componentFixture.componentInstance.config.menuItems;
         // only one item or top level item respectively
         expect(menuItems.length).toBe(2);
         let parentItem = menuItems[0];
