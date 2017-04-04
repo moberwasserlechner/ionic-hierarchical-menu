@@ -1,30 +1,40 @@
-* **I'm submitting a ...**
-[ ] bug report
-[ ] feature request
-[ ] question about the decisions made in the repository
+<!--
+Please consider the following before submitting an issue:
 
-* **What is the current behavior?**
+- Issues are reserved for BUG reports and FEATURE requests, DO NOT create issues for questions or support requests.
+- Bug reports MUST be submitted with an interactive example (http://plnkr.co/edit/tpl:XHGhbHPjktFIK6XgN5vi?p=preview).
+-->
 
+<!--- Provide a general summary of the issue in the title above prefixed by [BUG] or [FEATURE] -->
 
+## Expected Behavior
+<!--- If you're describing a bug, tell us what should happen -->
+<!--- If you're suggesting a change/improvement, tell us how it should work -->
 
-* **If the current behavior is a *bug*, please provide the steps to reproduce and if possible a minimal demo of the problem** via https://plnkr.co or similar.
+## Current Behavior
+<!--- If describing a bug, tell us what happens instead of the expected behavior -->
+<!--- If suggesting a change/improvement, explain the difference from current behavior -->
 
+## Possible Solution
+<!--- Not obligatory, but suggest a fix/reason for the bug, -->
+<!--- or ideas how to implement the addition or change -->
 
+## Steps to Reproduce (for bugs)
+<!--- Provide a link to a live example, or an unambiguous set of steps to -->
+<!--- reproduce this bug. Include code to reproduce, if relevant -->
 
-* **What is the expected behavior?**
+1.
+2.
+3.
+4.
 
+## Context
+<!--- How has this issue affected you? What are you trying to accomplish? -->
+<!--- Providing context helps us come up with a solution that is most useful in the real world -->
 
-
-* **What is the motivation / use case for changing the behavior?**
-
-
-
-* **Please tell me about your environment:**
-
-- Angular version: 2.4.x
-- Ionic version: 2.x.x
-- Browser: [all | Chrome XX | Firefox XX | IE XX | Safari XX | Mobile Chrome XX | Android X.X Web Browser | iOS XX Safari | iOS XX UIWebView | iOS XX WKWebView ]
-
-* **Other information** 
-
-(e.g. detailed explanation, stacktraces, related issues, suggestions how to fix, links for us to have context, eg. stackoverflow, gitter, etc)
+## Environment
+<!--- Include as many relevant details about the environment you experienced the bug in -->
+* ionic-hierarchical-menu version:
+* Ionic version:
+* Browser name and version:
+* Link to your project:
