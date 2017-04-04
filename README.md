@@ -1,10 +1,10 @@
-# Hierarchical Menu for Angular [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Travis](https://img.shields.io/travis/moberwasserlechner/ng-hierarchical-menu/master.svg)](https://travis-ci.org/moberwasserlechner/ng-hierarchical-menu) [![npm monthly downloads](https://img.shields.io/npm/dm/@byteowls/ng-hierarchical-menu.svg)](https://www.npmjs.com/package/@byteowls/ng-hierarchical-menu) [![npm version](https://img.shields.io/npm/v/@byteowls/ng-hierarchical-menu.svg)](https://www.npmjs.com/package/@byteowls/ng-hierarchical-menu)
+# Hierarchical Menu for Ionic [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Travis](https://img.shields.io/travis/moberwasserlechner/ionic-hierarchical-menu/master.svg)](https://travis-ci.org/moberwasserlechner/ionic-hierarchical-menu) [![npm monthly downloads](https://img.shields.io/npm/dm/@byteowls/ionic-hierarchical-menu.svg)](https://www.npmjs.com/package/@byteowls/ionic-hierarchical-menu) [![npm version](https://img.shields.io/npm/v/@byteowls/ionic-hierarchical-menu.svg)](https://www.npmjs.com/package/@byteowls/ionic-hierarchical-menu)
 
-Hierarchical Menu (@byteowls/ng-hierarchical-menu) for Angular 2+ is a hierarchical / multi-level menu component
+Hierarchical Menu (@byteowls/ionic-hierarchical-menu) for Ionic 2+ is a hierarchical / multi-level menu component.
 
 ## Installation
 ```sh
-npm install @byteowls/ng-hierarchical-menu --save
+npm install @byteowls/ionic-hierarchical-menu --save
 ```
 
 ## Demo
@@ -17,7 +17,7 @@ If you use SystemJS to load your files, you might have to update your config:
 ```js
 System.config({
     map: {
-        '@byteowls/ng-hierarchical-menu': 'node_modules/@byteowls/ng-hierarchical-menu/bundles/index.umd.js'
+        '@byteowls/ionic-hierarchical-menu': 'node_modules/@byteowls/ionic-hierarchical-menu/bundles/index.umd.js'
     }
 });
 ```
@@ -48,7 +48,7 @@ For that can use the `config` section in our `packages.json`
     "@angular/platform-browser-dynamic": "2.4.8",
     "@angular/platform-server": "2.4.8",
     "@ionic/storage": "2.0.1",
-    "@byteowls/ng-hierarchical-menu": "~0.1.0",
+    "@byteowls/ionic-hierarchical-menu": "~0.1.0",
     "angular2-jwt": "0.1.28",
     "ionic-angular": "2.2.0",
     "ionic-native": "2.8.1",
@@ -69,7 +69,7 @@ For that can use the `config` section in our `packages.json`
 ```
 
 In detail you have to overwrite the `ionic_sass` config script. A good starting point is the [original script](https://github.com/driftyco/ionic-app-scripts/blob/master/config/sass.config.js). 
-Copy it for example to `./config/ionic.sass.config.js` and add `node_modules/@byteowls/ng-hierarchical-menu/themes/scss` to the `includePaths` property.
+Copy it for example to `./config/ionic.sass.config.js` and add `node_modules/@byteowls/ionic-hierarchical-menu/themes/scss` to the `includePaths` property.
  
 ```js
 /**
@@ -81,7 +81,7 @@ Copy it for example to `./config/ionic.sass.config.js` and add `node_modules/@by
         'node_modules/ionicons/dist/scss',
         'node_modules/ionic-angular/fonts',
         // add this line
-        'node_modules/@byteowls/ng-hierarchical-menu/themes/scss'
+        'node_modules/@byteowls/ionic-hierarchical-menu/themes/scss'
     ]
 ```
 
@@ -124,7 +124,7 @@ Resources:
 ```ts
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from '@angular/core';
-import {HierarchicalMenuModule} from '@byteowls/ng-hierarchical-menu';
+import {HierarchicalMenuModule} from '@byteowls/ionic-hierarchical-menu';
 
 @NgModule({
     imports: [

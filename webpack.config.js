@@ -22,7 +22,7 @@ module.exports = {
         publicPath: '/',
         filename: 'index.umd.js',
         libraryTarget: 'umd',
-        library: 'ng-hierarchical-menu'
+        library: 'ionic-hierarchical-menu'
     },
 
     // require those dependencies but don't bundle them
