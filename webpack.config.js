@@ -26,7 +26,7 @@ module.exports = {
     },
 
     // require those dependencies but don't bundle them
-    externals: [/^\@angular\//, /^rxjs\//],
+    externals: [/^\@angular\//, /^rxjs\//, /^ionic-angular/],
 
     module: {
         rules: [{
