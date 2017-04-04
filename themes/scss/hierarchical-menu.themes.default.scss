@@ -16,43 +16,68 @@
     }
   }
 
+  // class on the div in li
+  .hm-item-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    //overflow: hidden#;
+
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    min-height: 3.0rem;
+
+    font-weight: normal;
+    line-height: normal;
+    text-align: initial;
+    text-decoration: none;
+
+    border-bottom: 1px solid $hierarchical-menu-item-separator-color;
+
+    .hm-link {
+      min-height: inherit;
+      width: 100%;
+
+      button {
+        color: $hierarchical-menu-text-color;
+        padding: 8px 10px;
+      }
+    }
+
+    .hm-expander {
+      min-height: inherit;
+      color: $hierarchical-menu-text-color;
+
+      button {
+        color: $hierarchical-menu-text-color;
+      }
+    }
+
+    .active {
+      color: $hierarchical-menu-active-text-color;
+      background-color: $hierarchical-menu-active-bg-color;
+    }
+
+    button {
+      background:none; // !important;
+      border:none;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      width: 100%;
+    }
+
+  }
+  .hm-item-line:hover {
+    color: $hierarchical-menu-hover-text-color;
+    background-color: $hierarchical-menu-hover-bg-color;
+  }
+
   // ul li
   .hm-item {
 
 
-    // class on the div in li
-    .hm-item-line {
-      border-bottom: 1px solid $hierarchical-menu-item-separator-color;
-      padding: 8px 10px;
-      width: 100%;
-      button {
-        background:none; // !important;
-        border:none;
-        padding: 0; // !important;
-        font: inherit;
-        text-align: left;
-      }
-
-      .hm-link {
-        color: $hierarchical-menu-text-color;
-      }
-
-      .hm-expander {
-        color: $hierarchical-menu-text-color;
-        float: right;
-        text-align: right !important;
-        font-size: larger;
-        vertical-align: middle;
-      }
-
-      .active {
-        color: $hierarchical-menu-active-text-color;
-        background-color: $hierarchical-menu-active-bg-color;
-      }
-    }
-    .hm-item-line:hover {
-      color: $hierarchical-menu-hover-text-color;
-      background-color: $hierarchical-menu-hover-bg-color;
-    }
   }
 }

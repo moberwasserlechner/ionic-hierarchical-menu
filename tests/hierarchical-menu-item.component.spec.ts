@@ -1,6 +1,7 @@
 import {TestBed, ComponentFixture} from "@angular/core/testing";
 import {HierarchicalMenuItemComponent} from "../src/hierarchical-menu-item.component";
 import {HierarchicalMenuConfig} from "../src/hierarchical-menu.service";
+import {IonicModule} from "ionic-angular";
 
 describe("HierarchicalMenuItemComponent", () => {
     let componentFixture: ComponentFixture<HierarchicalMenuItemComponent>;
@@ -8,7 +9,8 @@ describe("HierarchicalMenuItemComponent", () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [HierarchicalMenuItemComponent]
+            declarations: [HierarchicalMenuItemComponent],
+            imports: [IonicModule.forRoot(HierarchicalMenuItemComponent)]
         });
         TestBed.compileComponents();
     });
@@ -16,6 +18,11 @@ describe("HierarchicalMenuItemComponent", () => {
     beforeEach(() => {
         componentFixture = TestBed.createComponent(HierarchicalMenuItemComponent);
     });
+
+    afterEach(() => {
+        componentFixture.destroy();
+    });
+
 
     it('should be defined', () => {
         const element = componentFixture.elementRef.nativeElement;

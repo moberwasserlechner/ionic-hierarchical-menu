@@ -83,6 +83,7 @@
     "cash-cp": "^0.2.0"
   },
   "peerDependencies": {
-    "ionic-angular": "^2.2.0"
+    "ionic-angular": "^2.2.0",
+    "ionicons": "^3.0.0"
   }
 }

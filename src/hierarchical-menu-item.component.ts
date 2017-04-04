@@ -5,16 +5,19 @@ import {HierarchicalMenuItem, IconMode, HierarchicalMenuConfig} from "./hierarch
     selector: "hierarchical-menu-item",
     template: `
         <ul class="hm-level">
-            <li class="hm-item" *ngFor="let item of items">
+            <li *ngFor="let item of items">
                 <div [ngClass]="buildStyles(item)">
-                    <button class="hm-link" (click)="onClickLink(item)" >
-                        <span class="hm-icon" *ngIf="item.icon">
-                            <i *ngIf="useIconsByFontAwesome(item)" class="fa {{ item.icon }}" aria-hidden="true"></i>
-                            <!--#7 <i on-icon *ngIf="useIconsByIonic(item)" name="{{ item.icon }}"></ion-icon>-->
-                        </span>
-                        {{ translateIt(item) }}
-                    </button>
-                    <button class="hm-expander" *ngIf="hasChildren(item)" (click)="onClickExpander(item)">{{ item.expanded ? '-' : '+'}}</button>
+                    <div class="hm-link">
+                        <button (click)="onClickLink(item)">
+                            <ion-icon *ngIf="useIconsByIonic(item)" [name]="item.icon"></ion-icon>
+                            {{ translateIt(item) }}
+                        </button>
+                    </div>
+                    <div class="hm-expander">
+                        <button *ngIf="hasChildren(item)" (click)="onClickExpander(item)" ion-button icon-only>
+                            <ion-icon [name]="getExpanderIcon(item)"></ion-icon>
+                        </button>
+                    </div>
                 </div>
                 <hierarchical-menu-item *ngIf="item.expanded && hasChildren(item)" [items]="item.children" [config]="config"></hierarchical-menu-item>
             </li>
@@ -45,16 +48,16 @@ export class HierarchicalMenuItemComponent implements OnInit {
         }
     }
 
-    onClickLink(item: HierarchicalMenuItem) {
+    onClickLink(menuItem: HierarchicalMenuItem) {
         let func: Function | null = null;
-        if (item.onClickLink) {
-            func = item.onClickLink;
+        if (menuItem.onClickLink) {
+            func = menuItem.onClickLink;
         } else if (this.config.onClickLink) {
             func = this.config.onClickLink;
         }
 
         if (func) {
-            func.call(this, item);
+            func.call(this, menuItem);
         }
     }
 
@@ -68,7 +71,7 @@ export class HierarchicalMenuItemComponent implements OnInit {
     }
 
     useIconsByIonic(menuItem: HierarchicalMenuItem) {
-        return menuItem.icon != null && menuItem.iconMode === IconMode.IONIC;
+        return menuItem.icon != null && (!menuItem.iconMode || menuItem.iconMode === IconMode.IONIC);
     }
 
     buildStyles(menuItem: HierarchicalMenuItem) {
@@ -80,6 +83,28 @@ export class HierarchicalMenuItemComponent implements OnInit {
             return this.config.onTranslate.call(this, menuItem.title);
         }
         return menuItem.title;
+    }
+
+    getExpanderIcon(menuItem: HierarchicalMenuItem): string {
+        let icon: string;
+        if (menuItem.expanded) {
+            if (menuItem.expanderIconExpanded) {
+                icon = menuItem.expanderIconExpanded;
+            } else if (this.config.expanderIconExpanded) {
+                icon = this.config.expanderIconExpanded;
+            } else {
+                icon = "arrow-down";
+            }
+        } else {
+            if (menuItem.expanderIconCollapsed) {
+                icon = menuItem.expanderIconCollapsed;
+            } else if (this.config.expanderIconCollapsed) {
+                icon = this.config.expanderIconCollapsed;
+            } else {
+                icon = "arrow-forward";
+            }
+        }
+        return icon;
     }
 
 }

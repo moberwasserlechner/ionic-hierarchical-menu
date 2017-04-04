@@ -19,6 +19,9 @@ export class HierarchicalMenuConfig {
     onClickExpander: Function;
     onTranslate: Function;
 
+    expanderIconExpanded: string;
+    expanderIconCollapsed: string;
+
     constructor() {
         this.useTitleAsId = true;
     }
@@ -118,13 +121,16 @@ export class HierarchicalMenuItem {
     order?: number = 0;
 
     icon?: string | null;
-    iconMode?: IconMode = IconMode.FONTAWESOME;
+    iconMode?: IconMode = IconMode.IONIC;
     style?: string | null;
 
     page?: any;
     pageIndex?: number;
 
     expanded?: boolean = false;
+    expanderIconExpanded?: string;
+    expanderIconCollapsed?: string;
+
     parentRef?: string | null;
     children?: HierarchicalMenuItem[] = [];
 
