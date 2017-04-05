@@ -170,7 +170,7 @@ describe("HierarchicalMenuItemComponent", () => {
 
     });
 
-    it("should use expanded icon from item", () => {
+    it("should use collapsed icon from item", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
         config.expanderIconCollapsed = "remove-circle";
         config.add({title: "a", expanded: false, expanderIconCollapsed: "remove"});
