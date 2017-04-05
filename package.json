@@ -11,7 +11,7 @@
     "dist": "npm run build && npm run theme && cp package.json dist/ && cp README.md dist/",
     "pack": "npm run dist && npm pack dist/",
     "publish": "npm run dist && cd dist/ && npm publish --access public",
-    "test": "karma start",
+    "test": "rm -rf coverage && karma start",
     "test-watch": "ngc && karma start --no-single-run --auto-watch",
     "coverage": "http-server -c-1 -o -p 9875 ./coverage"
   },
@@ -75,7 +75,6 @@
     "awesome-typescript-loader": "2.2.4",
     "tslint-loader": "^3.4.3",
     "http-server": "^0.9.0",
-    "loader-utils": "~0.2.16",
 
     "source-map-loader": "0.1.5",
     "istanbul-instrumenter-loader": "0.2.0",

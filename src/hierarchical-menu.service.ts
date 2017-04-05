@@ -10,6 +10,9 @@ export enum MenuItemStructure {
 
 @Injectable()
 export class HierarchicalMenuConfig {
+    public static EXPANDER_ICON_EXPANDED = "arrow-down";
+    public static EXPANDER_ICON_COLLAPSED = "arrow-forward";
+
     private _menuItems: HierarchicalMenuItem[] = [];
     private dirtyList: boolean = false;
 

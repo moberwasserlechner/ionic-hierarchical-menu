@@ -10,11 +10,12 @@ import {HierarchicalMenuItem, IconMode, HierarchicalMenuConfig} from "./hierarch
                     <div class="hm-link">
                         <button (click)="onClickLink(item)">
                             <ion-icon *ngIf="useIconsByIonic(item)" [name]="item.icon"></ion-icon>
+                            <i *ngIf="useIconsByFontAwesome(item)" class="fa {{ item.icon }}" aria-hidden="true"></i>
                             {{ translateIt(item) }}
                         </button>
                     </div>
                     <div class="hm-expander">
-                        <button *ngIf="hasChildren(item)" (click)="onClickExpander(item)" ion-button icon-only>
+                        <button *ngIf="hasChildren(item)" (click)="onClickExpander(item)">
                             <ion-icon [name]="getExpanderIcon(item)"></ion-icon>
                         </button>
                     </div>
@@ -75,7 +76,7 @@ export class HierarchicalMenuItemComponent implements OnInit {
     }
 
     useIconsByIonic(menuItem: HierarchicalMenuItem) {
-        return menuItem.icon != null && (!menuItem.iconMode || menuItem.iconMode === IconMode.IONIC);
+        return menuItem.icon != null && (menuItem.iconMode === IconMode.IONIC || menuItem.iconMode == null);
     }
 
     buildStyles(menuItem: HierarchicalMenuItem) {
@@ -97,7 +98,9 @@ export class HierarchicalMenuItemComponent implements OnInit {
             } else if (this.config.expanderIconExpanded) {
                 icon = this.config.expanderIconExpanded;
             } else {
-                icon = "arrow-down";
+
+
+                icon = HierarchicalMenuConfig.EXPANDER_ICON_EXPANDED;
             }
         } else {
             if (menuItem.expanderIconCollapsed) {
@@ -105,7 +108,7 @@ export class HierarchicalMenuItemComponent implements OnInit {
             } else if (this.config.expanderIconCollapsed) {
                 icon = this.config.expanderIconCollapsed;
             } else {
-                icon = "arrow-forward";
+                icon = HierarchicalMenuConfig.EXPANDER_ICON_COLLAPSED;
             }
         }
         return icon;

@@ -5,6 +5,7 @@ module.exports = function(config) {
     var testWebpackConfig = require('./webpack.test.js');
 
     var configuration = {
+        browserNoActivityTimeout: 100000,
         basePath: '',
 
         frameworks: ['jasmine'],

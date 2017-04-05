@@ -52,6 +52,10 @@
 
       button {
         color: $hierarchical-menu-text-color;
+        padding: 0.3rem 1rem 0 1rem;
+        min-width: 2rem;
+        font-size: 2rem;
+        user-select: none;
       }
     }
 
@@ -66,6 +70,7 @@
       font: inherit;
       text-align: left;
       cursor: pointer;
+      text-decoration: none;
       width: 100%;
     }
 
