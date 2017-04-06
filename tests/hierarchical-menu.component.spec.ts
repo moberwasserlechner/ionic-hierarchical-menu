@@ -138,6 +138,147 @@ describe("HierarchicalMenuComponent", () => {
     });
 
 
+    it("should have no expanded items", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.add({title: "a"});
+        config.add({title: "b"});
+        config.add({title: "c"});
+        config.add({title: "d"});
+        config.add({title: "e"});
+
+        componentFixture.componentInstance.config = config;
+        let triggerTreeBuild = componentFixture.componentInstance.config;
+
+        expect(config.getExpandedIds().length).toBe(0);
+    });
+
+    it("should have expanded items", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.add({title: "a", expanded: true});
+        config.add({title: "aa", parentRef: "a"});
+
+        config.add({title: "b"});
+        config.add({title: "bb", parentRef: "b"});
+
+        config.add({title: "c", expanded: true});
+        config.add({title: "bb", parentRef: "c"});
+
+        componentFixture.componentInstance.config = config;
+        let triggerTreeBuild = componentFixture.componentInstance.config;
+
+        let ids = config.getExpandedIds();
+        expect(ids.length).toBe(2);
+        expect(ids).toContain("a");
+        expect(ids).toContain("c");
+    });
+
+    it("should have all parent items expanded", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.add({title: "a"});
+        config.add({title: "aa", parentRef: "a"});
+        config.add({title: "aaa", parentRef: "aa"});
+
+        config.add({title: "b"});
+        config.add({title: "bb", parentRef: "b"});
+
+        config.add({title: "c"});
+        config.add({title: "bb", parentRef: "c"});
+
+        componentFixture.componentInstance.config = config;
+        let triggerTreeBuild = componentFixture.componentInstance.config;
+
+        expect(config.getExpandedIds().length).toBe(0);
+
+        config.expandAll();
+
+        expect(config.getExpandedIds().length).toBe(4);
+
+        config.collapseAll();
+
+        expect(config.getExpandedIds().length).toBe(0);
+    });
+
+    it("should have all parent items collapsed", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.add({title: "a", expanded: true});
+        config.add({title: "aa", parentRef: "a"});
+
+        config.add({title: "b"});
+        config.add({title: "bb", parentRef: "b"});
+
+        config.add({title: "c", expanded: true});
+        config.add({title: "bb", parentRef: "c"});
+
+        componentFixture.componentInstance.config = config;
+        let triggerTreeBuild = componentFixture.componentInstance.config;
+
+        expect(config.getExpandedIds().length).toBe(2);
+
+        config.collapseAll();
+
+        expect(config.getExpandedIds().length).toBe(0);
+    });
+
+    it("should expand defined items and close others", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.add({title: "a", expanded: true});
+        config.add({title: "aa", parentRef: "a"});
+
+        config.add({title: "b"});
+        config.add({title: "bb", parentRef: "b"});
+
+        config.add({title: "c"});
+        config.add({title: "bb", parentRef: "c"});
+
+        componentFixture.componentInstance.config = config;
+        let triggerTreeBuild = componentFixture.componentInstance.config;
+
+        expect(config.getExpandedIds().length).toBe(1);
+
+        config.expand(["b","c"], true);
+
+        let ids = config.getExpandedIds();
+        expect(ids.length).toBe(2);
+        expect(ids).toContain("b");
+        expect(ids).toContain("c");
+    });
+
+    it("should expand defined items and dont touch existing others", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.add({title: "a", expanded: true});
+        config.add({title: "aa", parentRef: "a"});
+
+        config.add({title: "b"});
+        config.add({title: "bb", parentRef: "b"});
+
+        config.add({title: "c"});
+        config.add({title: "cc", parentRef: "c"});
+
+        config.add({title: "d"});
+        config.add({title: "dd", parentRef: "d"});
+
+        componentFixture.componentInstance.config = config;
+        let triggerTreeBuild = componentFixture.componentInstance.config;
+
+        expect(config.getExpandedIds().length).toBe(1);
+
+        config.expand(["b","c"]);
+
+        let ids = config.getExpandedIds();
+        expect(ids.length).toBe(3);
+        expect(ids).toContain("a");
+        expect(ids).toContain("b");
+        expect(ids).toContain("c");
+    });
+
+
+
     // it("should use a custom on click function", () => {
     //     let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
     //     config.onClickLink = (item: HierarchicalMenuItem) => {

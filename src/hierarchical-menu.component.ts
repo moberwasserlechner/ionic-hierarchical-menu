@@ -29,6 +29,7 @@ export class HierarchicalMenuComponent implements OnInit {
     get config(): HierarchicalMenuConfig{
         if (this._config.menuItemStructure === MenuItemStructure.FLAT && this._config.isDirty()) {
             this._config.menuItems = this.treeify(this._config.menuItems);
+            this._config.expandFromStored();
         }
 
         return this._config;

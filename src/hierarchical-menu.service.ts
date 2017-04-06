@@ -25,6 +25,9 @@ export class HierarchicalMenuConfig {
     expanderIconExpanded: string;
     expanderIconCollapsed: string;
 
+    private expandedIds: string[];
+    private expandedCloseAllOthers: boolean;
+
     constructor() {
         this.useTitleAsId = true;
     }
@@ -109,6 +112,57 @@ export class HierarchicalMenuConfig {
         return this.dirtyList;
     }
 
+    getExpandedIds(): string[] {
+        let ids: string[] = [];
+        HierarchicalMenuItem.forEachRecursive(this.menuItems, (i) => {
+            if (i.expanded && (i.children && i.children.length > 0)) {
+                ids.push(i.id);
+            }
+        });
+        return ids;
+    }
+
+    expandAll(): void {
+        HierarchicalMenuItem.forEachRecursive(this.menuItems, (i) => {
+            if (i.children && i.children.length > 0) {
+                i.expanded = true;
+            }
+        });
+    }
+
+    setExpandedIds(ids: string[], closeAllOthers: boolean = false) {
+        this.expandedIds = ids;
+        this.expandedCloseAllOthers = closeAllOthers;
+    }
+
+    expandFromStored() {
+        if (this.expandedIds != null && this.expandedIds.length > 0) {
+            this.expand(this.expandedIds, this.expandedCloseAllOthers);
+            this.expandedIds = null;
+        }
+    }
+
+    expand(ids: string[], closeAllOthers: boolean = false) {
+        if (ids) {
+            if (closeAllOthers) {
+                this.collapseAll();
+            }
+
+            HierarchicalMenuItem.forEachRecursive(this.menuItems, (i) => {
+                if (ids.indexOf(i.id) > -1 && (i.children && i.children.length > 0)) {
+                    i.expanded = true;
+                }
+            });
+        }
+    }
+
+    collapseAll(): void {
+        HierarchicalMenuItem.forEachRecursive(this.menuItems, (i) => {
+            i.expanded = false;
+        });
+    }
+
+
 }
 
 // ######################################
@@ -139,6 +193,18 @@ export class HierarchicalMenuItem {
 
     onClickLink?: Function;
     onClickExpander?: Function;
+
+    static forEachRecursive(objects: HierarchicalMenuItem[], callback: (item: HierarchicalMenuItem) => any) {
+        for (let o of objects) {
+            if (o) {
+                callback(o);
+
+                if (o.children) {
+                    HierarchicalMenuItem.forEachRecursive(o.children, callback);
+                }
+            }
+        }
+    }
 }
 
 export enum IconMode {
