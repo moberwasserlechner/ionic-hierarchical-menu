@@ -240,7 +240,7 @@ describe("HierarchicalMenuComponent", () => {
 
         expect(config.getExpandedIds().length).toBe(1);
 
-        config.expand(["b","c"], true);
+        config.expandNow(["b","c"], true);
 
         let ids = config.getExpandedIds();
         expect(ids.length).toBe(2);
@@ -248,7 +248,7 @@ describe("HierarchicalMenuComponent", () => {
         expect(ids).toContain("c");
     });
 
-    it("should expand defined items and dont touch existing others", () => {
+    it("should expand defined items instantly and dont touch existing others", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
         config.menuItemStructure = MenuItemStructure.FLAT;
         config.add({title: "a", expanded: true});
@@ -268,7 +268,36 @@ describe("HierarchicalMenuComponent", () => {
 
         expect(config.getExpandedIds().length).toBe(1);
 
-        config.expand(["b","c"]);
+        config.expandNow(["b","c"]);
+
+        let ids = config.getExpandedIds();
+        expect(ids.length).toBe(3);
+        expect(ids).toContain("a");
+        expect(ids).toContain("b");
+        expect(ids).toContain("c");
+    });
+
+    it("should expand defined items on rebuild", () => {
+        let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
+        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.add({title: "a", expanded: true});
+        config.add({title: "aa", parentRef: "a"});
+
+        config.add({title: "b"});
+        config.add({title: "bb", parentRef: "b"});
+
+        config.add({title: "c"});
+        config.add({title: "cc", parentRef: "c"});
+
+        config.expandOnRebuild(["b","c"]);
+
+        config.add({title: "d"});
+        config.add({title: "dd", parentRef: "d"});
+
+        /**
+         * Manually trigger a rebuild, which is normally done by the component
+         */
+        config.rebuild();
 
         let ids = config.getExpandedIds();
         expect(ids.length).toBe(3);

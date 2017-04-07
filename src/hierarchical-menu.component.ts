@@ -17,46 +17,14 @@ export class HierarchicalMenuComponent implements OnInit {
     @Input() set config(itemContainer: HierarchicalMenuConfig) {
         if (itemContainer) {
             this._config = itemContainer;
-            // if (this._mode === MenuItemStructure.FLAT) {
-            //     this._config.menuItems = this.treeify(itemContainer.menuItems);
-            //     this._config.dirtyList = false;
-            // }
         } else {
             this._config = new HierarchicalMenuConfig();
         }
     }
 
     get config(): HierarchicalMenuConfig{
-        if (this._config.menuItemStructure === MenuItemStructure.FLAT && this._config.isDirty()) {
-            this._config.menuItems = this.treeify(this._config.menuItems);
-            this._config.expandFromStored();
-        }
-
+        this._config.rebuild();
         return this._config;
-    }
-
-    treeify(flatList: HierarchicalMenuItem[]): HierarchicalMenuItem[] {
-        let treeList: HierarchicalMenuItem[] = [];
-        let lookup:any = {};
-        flatList.forEach(obj => {
-            lookup[<string>obj.id] = obj;
-        });
-
-        flatList.forEach(obj => {
-            if (obj.parentRef) {
-                if (lookup[<string>obj.parentRef]) {
-                    if (!lookup[<string>obj.parentRef].children) {
-                        lookup[<string>obj.parentRef].children = [];
-                    }
-                    lookup[<string>obj.parentRef].children.push(obj);
-                } else {
-                    obj.parentRef = null;
-                }
-            } else {
-                treeList.push(obj);
-            }
-        });
-        return treeList;
     }
 
     ngOnInit(): void {
