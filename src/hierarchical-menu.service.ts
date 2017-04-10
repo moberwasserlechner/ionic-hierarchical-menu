@@ -148,7 +148,6 @@ export class HierarchicalMenuConfig {
      */
     rebuild(force:boolean = false) {
         if (this.rebuildRequired || force) {
-            console.log("hierarchical-menu: rebuild"+(force?" forced":""));
             if (this.menuItemStructure === MenuItemStructure.FLAT) {
                 this._menuItems = this.treeify(this._menuItems);
             }
