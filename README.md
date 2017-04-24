@@ -170,18 +170,20 @@ export class MenuPage {
         };
         // if there is a page assigned to the menu item send a navigation event
         this.menuConfig.onClickLink = (item: HierarchicalMenuItem) => {
-            if (item.page) {
-                let navEvent = new NavEvent();
-                navEvent.page = item.page;
-                if (item.pageIndex) {
-                    navEvent.pageIndex = item.pageIndex;
-                }
-                this.eventBus.publish(AppConstants.Event.GO_TO_PAGE, navEvent);
+          if (item.page) {
+            let navEvent = new NavEvent();
+            navEvent.page = item.page;
+            if (item.pageOptions) {
+              navEvent.options = item.pageOptions;
             }
+            this.eventBus.publish(AppConstants.Event.NAV, navEvent);
+          }
         };
         // run this callback if the expander is clicked
         this.menuConfig.onClickExpander = (item: HierarchicalMenuItem) => {
              console.info("config: parent menu#"+item.id+" "+(item.expanded?"opened":"closed"));
+             // get all expanded item ids
+             console.log(this.menuConfig.getExpandedIds());
         };
 
         // add a parent menu item with a special style and expand it per default
@@ -191,10 +193,17 @@ export class MenuPage {
         this.menuConfig.add({title: "menu.personal.home", parentRef: "menu.personal.section", page: HomePage});
         // Another menu item
         this.menuConfig.add({title: "menu.personal.profile", parentRef: "menu.personal.section", page: ProfilePage});
-        // Another menu item with a pageIndex because its a tabbed page
-        this.menuConfig.add({title: "menu.personal.events", parentRef: "menu.personal.section", page: TabsPage, pageIndex: 0});
+        // Another menu item with a index because its a tabbed page
+        this.menuConfig.add({title: "menu.personal.events", parentRef: "menu.personal.section", page: TabsPage, pageOptions: {tabIndex: 0}});
         // A parent menu item
         this.menuConfig.add({title: "menu.settings.section", style: "top-section", expanded: true});
+        
+        this.menuConfig.add({title: "menu.settings.language", parentRef: "menu.settings.section"});
+        for (let lang of ["de","en"]) {
+          this.menuConfig.add({title: "common.language." + lang, parentRef: "menu.settings.language", onClickLink: () => {
+            this.changeLanguage(lang);
+          }});
+        }
         this.menuConfig.add({title: "menu.settings.feedback", parentRef: "menu.settings.section"});
         this.menuConfig.add({title: "menu.settings.about", parentRef: "menu.settings.section"});
         // use a special click callback for this menu item

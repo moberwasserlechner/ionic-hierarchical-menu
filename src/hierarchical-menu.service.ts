@@ -229,7 +229,7 @@ export class HierarchicalMenuItem {
     style?: string | null;
 
     page?: any;
-    pageIndex?: number;
+    pageOptions?: any = {};
 
     expanded?: boolean = false;
     expanderIconExpanded?: string;
