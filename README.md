@@ -187,7 +187,7 @@ export class MenuPage {
         };
 
         // add a parent menu item with a special style and expand it per default
-        this.menuConfig.add({title: "menu.personal.section", style: "top-section", expanded: true});
+        this.menuConfig.add({title: "menu.personal.section", styleLine: "top-section", expanded: true});
         // Add simple menu item with a reference to the parent. Because we said that items are delivered as flat list. 
         // The component will create the hierarchical structure by itself
         this.menuConfig.add({title: "menu.personal.home", parentRef: "menu.personal.section", page: HomePage});
@@ -196,7 +196,7 @@ export class MenuPage {
         // Another menu item with a index because its a tabbed page
         this.menuConfig.add({title: "menu.personal.events", parentRef: "menu.personal.section", page: TabsPage, pageOptions: {tabIndex: 0}});
         // A parent menu item
-        this.menuConfig.add({title: "menu.settings.section", style: "top-section", expanded: true});
+        this.menuConfig.add({title: "menu.settings.section", styleLine: "top-section", expanded: true});
         
         this.menuConfig.add({title: "menu.settings.language", parentRef: "menu.settings.section"});
         for (let lang of ["de","en"]) {
@@ -219,7 +219,7 @@ It's also possible to load menu items after first init, e.g. from a backend serv
      // 
      loadMenuItems() {
          const ITEM_ID = "menu.chosen_club.section";
-         this.menuConfig.addBefore("menu.settings.section", { id: ITEM_ID, title: "Special section", expanded: true, style: "special-section"});
+         this.menuConfig.addBefore("menu.settings.section", { id: ITEM_ID, title: "Special section", expanded: true, styleLine: "special-section"});
          
          // this is a 
          this.backendService.getMenuItems().subscribe(

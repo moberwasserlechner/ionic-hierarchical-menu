@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {deprecate} from "util";
 
 
 /**
@@ -226,7 +227,13 @@ export class HierarchicalMenuItem {
 
     icon?: string | null;
     iconMode?: IconMode = IconMode.IONIC;
-    style?: string | null;
+
+    styleItem?: string; // ul > li
+    styleLine?: string; // ul > li > div
+    styleLink?: string; // ul > li > div > div
+    styleIcon?: string; // ul > li > div > div > button > ion-icon | i
+    styleText?: string; // ul > li > div > div > button > span
+    styleExpander?: string; //
 
     page?: any;
     pageOptions?: any = {};

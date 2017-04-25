@@ -4,25 +4,28 @@ import {HierarchicalMenuItem, IconMode, HierarchicalMenuConfig} from "./hierarch
 @Component({
     selector: "hierarchical-menu-item",
     template: `
-        <ul class="hm-level">
-            <li *ngFor="let item of items">
-                <div [ngClass]="buildStyles(item)">
-                    <div class="hm-link">
-                        <button (click)="onClickLink(item)">
-                            <ion-icon *ngIf="useIconsByIonic(item)" [name]="item.icon"></ion-icon>
-                            <i *ngIf="useIconsByFontAwesome(item)" class="fa {{ item.icon }}" aria-hidden="true"></i>
-                            {{ translateIt(item) }}
-                        </button>
-                    </div>
-                    <div class="hm-expander">
-                        <button *ngIf="hasChildren(item)" (click)="onClickExpander(item)">
-                            <ion-icon [name]="getExpanderIcon(item)"></ion-icon>
-                        </button>
-                    </div>
-                </div>
-                <hierarchical-menu-item *ngIf="item.expanded && hasChildren(item)" [items]="item.children" [config]="config"></hierarchical-menu-item>
-            </li>
-        </ul>
+      <ul class="hm-level">
+        <li *ngFor="let item of items" [ngClass]="buildStyles('hm-item', item.styleItem)">
+          <div [ngClass]="buildStyles('hm-line', item.styleLine)">
+            <div [ngClass]="buildStyles('hm-link', item.styleLink)">
+              <button (click)="onClickLink(item)" icon-left>
+                <ion-icon [ngClass]="buildStyles('hm-icon', item.styleIcon)" *ngIf="useIconsByIonic(item)" [name]="item.icon"></ion-icon>
+                <i *ngIf="useIconsByFontAwesome(item)" [ngClass]="buildStyles('hm-icon', item.styleIcon, 'fa', item.icon)" aria-hidden="true"></i>
+                <span [ngClass]="buildStyles('hm-text', item.styleText)">
+                  {{ translateIt(item) }}
+                </span>
+              </button>
+            </div>
+            <div [ngClass]="buildStyles('hm-expander', item.styleExpander)">
+              <button *ngIf="hasChildren(item)" (click)="onClickExpander(item)">
+                <ion-icon [name]="getExpanderIcon(item)"></ion-icon>
+              </button>
+            </div>
+          </div>
+          <hierarchical-menu-item *ngIf="item.expanded && hasChildren(item)" [items]="item.children"
+                                  [config]="config"></hierarchical-menu-item>
+        </li>
+      </ul>
     `
 })
 export class HierarchicalMenuItemComponent implements OnInit {
@@ -79,8 +82,11 @@ export class HierarchicalMenuItemComponent implements OnInit {
         return menuItem.icon != null && (menuItem.iconMode === IconMode.IONIC || menuItem.iconMode == null);
     }
 
-    buildStyles(menuItem: HierarchicalMenuItem) {
-        return "hm-item-line " + (menuItem.style || "");
+    buildStyles(...styles: string[]) {
+      if (styles) {
+        return styles.join(" ").trim();
+      }
+      return "";
     }
 
     translateIt(menuItem: HierarchicalMenuItem):string {

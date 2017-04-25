@@ -32,8 +32,14 @@ describe("HierarchicalMenuItemComponent", () => {
     it('should be a custom item line style set', () => {
         // componentFixture.componentInstance.menuItems = menuItems;
         // componentFixture.detectChanges();
-        let styles = componentFixture.componentInstance.buildStyles({ title: "styleTest", style: "test-style"});
-        expect(styles).toBe("hm-item-line test-style");
+        let styles = componentFixture.componentInstance.buildStyles();
+        expect(styles).toBe("");
+
+        styles = componentFixture.componentInstance.buildStyles("hm-link", null);
+        expect(styles).toBe("hm-link");
+
+        styles = componentFixture.componentInstance.buildStyles("hm-link", "fa", "icon");
+        expect(styles).toBe("hm-link fa icon");
     });
 
 
