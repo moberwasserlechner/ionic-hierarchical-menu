@@ -9,7 +9,7 @@ npm install @byteowls/ionic-hierarchical-menu --save
 
 ## Demo
 
-
+http://plnkr.co/edit/tpl:PkGgfUq6h7vPvdp4zjHl?p=preview
 
 ## Usage
 If you use SystemJS to load your files, you might have to update your config:

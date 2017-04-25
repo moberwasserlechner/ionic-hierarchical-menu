@@ -2,7 +2,7 @@
 Please consider the following before submitting an issue:
 
 - Issues are reserved for BUG reports and FEATURE requests, DO NOT create issues for questions or support requests.
-- Bug reports MUST be submitted with an interactive example (http://plnkr.co/edit/tpl:XHGhbHPjktFIK6XgN5vi?p=preview).
+- Bug reports MUST be submitted with an interactive example http://plnkr.co/edit/tpl:PkGgfUq6h7vPvdp4zjHl?p=preview.
 -->
 
 <!--- Provide a general summary of the issue in the title above prefixed by [BUG] or [FEATURE] -->
@@ -37,4 +37,4 @@ Please consider the following before submitting an issue:
 * ionic-hierarchical-menu version:
 * Ionic version:
 * Browser name and version:
-* Link to your project:
+* Link to your project (plunkr):
