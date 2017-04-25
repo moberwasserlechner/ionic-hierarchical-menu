@@ -93,7 +93,7 @@ describe("HierarchicalMenuItemComponent", () => {
 
     it("should use fontawesome icons", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.add({title: "a", icon: "alarm", iconMode: IconMode.FONTAWESOME});
+        config.add({title: "a", icon: "alarm", iconMode: "FA"});
 
         componentFixture.componentInstance.config = config;
         componentFixture.componentInstance.items = config.menuItems;

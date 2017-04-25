@@ -32,19 +32,19 @@ describe("HierarchicalMenuComponent", () => {
 
     it("should be flat mode ", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
-        expect(config.menuItemStructure).toBe(MenuItemStructure.FLAT);
+        config.menuItemStructure = "F";
+        expect(config.menuItemStructure).toBe("F");
     });
 
     it("should build a hierarchy from a simple flat list", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({ id: "b", title: "item b ref a", parentRef: "a" });
         config.add({ id: "a", title: "item a", parentRef: "" });
         config.add({ id: "c", title: "item c ref b", parentRef: "b" });
 
         componentFixture.componentInstance.config = config;
-        expect(config.menuItemStructure).toBe(MenuItemStructure.FLAT);
+        expect(config.menuItemStructure).toBe("F");
 
         let menuItems: HierarchicalMenuItem[] = componentFixture.componentInstance.config.menuItems;
         // only one item or top level item respectively
@@ -57,7 +57,7 @@ describe("HierarchicalMenuComponent", () => {
     it("should build a little more complex hierarchy from a flat list", () => {
 
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({title: "menu.personal.section"});
         config.add({title: "menu.personal.home", parentRef: "menu.personal.section"});
         config.add({title: "menu.personal.profile", parentRef: "menu.personal.section"});
@@ -140,7 +140,7 @@ describe("HierarchicalMenuComponent", () => {
 
     it("should have no expanded items", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({title: "a"});
         config.add({title: "b"});
         config.add({title: "c"});
@@ -155,7 +155,7 @@ describe("HierarchicalMenuComponent", () => {
 
     it("should have expanded items", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({title: "a", expanded: true});
         config.add({title: "aa", parentRef: "a"});
 
@@ -176,7 +176,7 @@ describe("HierarchicalMenuComponent", () => {
 
     it("should have all parent items expanded", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({title: "a"});
         config.add({title: "aa", parentRef: "a"});
         config.add({title: "aaa", parentRef: "aa"});
@@ -203,7 +203,7 @@ describe("HierarchicalMenuComponent", () => {
 
     it("should have all parent items collapsed", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({title: "a", expanded: true});
         config.add({title: "aa", parentRef: "a"});
 
@@ -225,7 +225,7 @@ describe("HierarchicalMenuComponent", () => {
 
     it("should expand defined items and close others", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({title: "a", expanded: true});
         config.add({title: "aa", parentRef: "a"});
 
@@ -250,7 +250,7 @@ describe("HierarchicalMenuComponent", () => {
 
     it("should expand defined items instantly and dont touch existing others", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({title: "a", expanded: true});
         config.add({title: "aa", parentRef: "a"});
 
@@ -279,7 +279,7 @@ describe("HierarchicalMenuComponent", () => {
 
     it("should expand defined items on rebuild", () => {
         let config: HierarchicalMenuConfig = new HierarchicalMenuConfig();
-        config.menuItemStructure = MenuItemStructure.FLAT;
+        config.menuItemStructure = "F";
         config.add({title: "a", expanded: true});
         config.add({title: "aa", parentRef: "a"});
 

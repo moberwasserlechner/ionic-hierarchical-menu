@@ -17,7 +17,7 @@ If you use SystemJS to load your files, you might have to update your config:
 ```js
 System.config({
     map: {
-        '@byteowls/ionic-hierarchical-menu': 'node_modules/@byteowls/ionic-hierarchical-menu/bundles/index.umd.js'
+        '@byteowls/ionic-hierarchical-menu': 'npm:@byteowls/ionic-hierarchical-menu/bundles/index.umd.js'
     }
 });
 ```
@@ -48,7 +48,7 @@ For that can use the `config` section in our `packages.json`
     "@angular/platform-browser-dynamic": "2.4.8",
     "@angular/platform-server": "2.4.8",
     "@ionic/storage": "2.0.1",
-    "@byteowls/ionic-hierarchical-menu": "~1.0.0-beta1",
+    "@byteowls/ionic-hierarchical-menu": "~1.0.0-beta2",
     "angular2-jwt": "0.1.28",
     "ionic-angular": "2.3.0",
     "ionic-native": "2.8.1",
@@ -163,7 +163,7 @@ export class MenuPage {
         // create the config object
         this.menuConfig = new HierarchicalMenuConfig();
         // the menu items are structured a flat list
-        this.menuConfig.menuItemStructure = MenuItemStructure.FLAT;
+        this.menuConfig.menuItemStructure = "F";
         // translate menu item titles using this callback
         this.menuConfig.onTranslate = (code: string) => {
             return this.i18n.instant(code);

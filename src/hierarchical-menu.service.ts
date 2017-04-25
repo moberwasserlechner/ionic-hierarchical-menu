@@ -5,9 +5,18 @@ import {deprecate} from "util";
 /**
  * Menu item mode describes the form of incoming menu items. Are the already hierarchical or add only referencing their parents.
  */
-export enum MenuItemStructure {
-    FLAT, HIERARCHICAL
-}
+export type MenuItemStructure = (
+  "F" // Flat
+  |
+  "H" // Hierarchical
+  |
+  null // defaults to hierarchical
+);
+
+
+export type IconMode = (
+  "ION" | "FA" | null
+);
 
 @Injectable()
 export class HierarchicalMenuConfig {
@@ -17,7 +26,7 @@ export class HierarchicalMenuConfig {
     private _menuItems: HierarchicalMenuItem[] = [];
     private rebuildRequired: boolean = false;
 
-    menuItemStructure: MenuItemStructure = MenuItemStructure.HIERARCHICAL;
+    menuItemStructure: MenuItemStructure = "H";
     useTitleAsId: boolean = true;
     onClickLink: Function;
     onClickExpander: Function;
@@ -149,7 +158,7 @@ export class HierarchicalMenuConfig {
      */
     rebuild(force:boolean = false) {
         if (this.rebuildRequired || force) {
-            if (this.menuItemStructure === MenuItemStructure.FLAT) {
+            if (this.menuItemStructure === "F") {
                 this._menuItems = this.treeify(this._menuItems);
             }
             if (this.expandedIds && this.expandedIds.length > 0) {
@@ -226,7 +235,7 @@ export class HierarchicalMenuItem {
     order?: number = 0;
 
     icon?: string | null;
-    iconMode?: IconMode = IconMode.IONIC;
+    iconMode?: IconMode = "ION";
 
     styleItem?: string; // ul > li
     styleLine?: string; // ul > li > div
@@ -259,8 +268,4 @@ export class HierarchicalMenuItem {
             }
         }
     }
-}
-
-export enum IconMode {
-    FONTAWESOME, IONIC
 }

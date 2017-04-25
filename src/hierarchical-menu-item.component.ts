@@ -75,11 +75,11 @@ export class HierarchicalMenuItemComponent implements OnInit {
     }
 
     useIconsByFontAwesome(menuItem: HierarchicalMenuItem): boolean {
-        return menuItem.icon != null && menuItem.iconMode === IconMode.FONTAWESOME;
+        return menuItem.icon != null && menuItem.iconMode === "FA";
     }
 
     useIconsByIonic(menuItem: HierarchicalMenuItem) {
-        return menuItem.icon != null && (menuItem.iconMode === IconMode.IONIC || menuItem.iconMode == null);
+        return menuItem.icon != null && (menuItem.iconMode === "ION" || menuItem.iconMode == null);
     }
 
     buildStyles(...styles: string[]) {

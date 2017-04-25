@@ -1,7 +1,7 @@
 {
   "name": "@byteowls/ionic-hierarchical-menu",
   "description": "Hierarchical menu is a hierarchical / multi-level menu component for Ionic 2+",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-beta2",
   "scripts": {
     "ngc": "ngc",
     "webpack": "webpack",
