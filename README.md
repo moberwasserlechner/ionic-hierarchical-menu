@@ -1,6 +1,8 @@
-# Hierarchical Menu for Ionic [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Travis](https://img.shields.io/travis/moberwasserlechner/ionic-hierarchical-menu/master.svg)](https://travis-ci.org/moberwasserlechner/ionic-hierarchical-menu) [![npm monthly downloads](https://img.shields.io/npm/dm/@byteowls/ionic-hierarchical-menu.svg)](https://www.npmjs.com/package/@byteowls/ionic-hierarchical-menu) [![npm version](https://img.shields.io/npm/v/@byteowls/ionic-hierarchical-menu.svg)](https://www.npmjs.com/package/@byteowls/ionic-hierarchical-menu)
+# EOL! Hierarchical Menu for Ionic [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Travis](https://img.shields.io/travis/moberwasserlechner/ionic-hierarchical-menu/master.svg)](https://travis-ci.org/moberwasserlechner/ionic-hierarchical-menu) [![npm monthly downloads](https://img.shields.io/npm/dm/@byteowls/ionic-hierarchical-menu.svg)](https://www.npmjs.com/package/@byteowls/ionic-hierarchical-menu) [![npm version](https://img.shields.io/npm/v/@byteowls/ionic-hierarchical-menu.svg)](https://www.npmjs.com/package/@byteowls/ionic-hierarchical-menu)
 
 Hierarchical Menu (@byteowls/ionic-hierarchical-menu) for Ionic 2+ is a hierarchical / multi-level menu component.
+
+Attention: This repository will not be maintained! EOL!
 
 ## Installation
 ```sh
